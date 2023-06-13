@@ -1,0 +1,33 @@
+CREATE TABLE User_Information(
+    UID              INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
+    UserID           VARCHAR(20),  -- PurchasePostage
+
+    UserFirstName    NVARCHAR(50),
+    UserLastName     NVARCHAR(50),
+    UserMiddleName   NVARCHAR(50) NULL,
+
+    Email		 NVARCHAR(MAX) NOT NULL,
+    Company		 NVARCHAR(MAX) NULL,
+    Address1	 NVARCHAR(MAX) NOT NULL,
+    Address2	 NVARCHAR(MAX) NULL,
+    ZipPostalCode	 NVARCHAR(MAX) NOT NULL,
+    City		 NVARCHAR(MAX) NOT NULL,
+    Country          NVARCHAR(MAX) NOT NULL,
+    StateProvinceId  NVARCHAR(MAX) NOT NULL,
+    PhoneNumber      NVARCHAR(MAX) NULL,   
+    FaxNumber        NVARCHAR(MAX) NULL,
+    [Password]       NVARCHAR(MAX) NOT NULL,  
+           
+    [Description]    NVARCHAR(MAX),
+    CreateDate       DATETIME DEFAULT GETDATE() NOT NULL,
+    CreatedBy        VARCHAR(50) NOT NULL,
+    ModifyDate       DATETIME NULL,
+    ModifiedBy       VARCHAR(50) NULL,
+    RowStamp         TIMESTAMP NOT NULL
+);
+
+SELECT *
+FROM User_Information
+
+INSERT INTO User_Information (Email, [Password], Address1, ZipPostalCode, City, Country, StateProvinceId)
+VALUES ('test@gmail.com', '123', '123 main st', '99999', 'Los Angeles', 'United States', 'CA');
