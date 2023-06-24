@@ -112,7 +112,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(217, 23);
             this.label3.TabIndex = 6;
-            this.label3.Text = "RETURNING CUSTOMER";
+            this.label3.Text = "RETURNING USER";
             // 
             // panel1
             // 

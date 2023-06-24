@@ -83,26 +83,25 @@ namespace WindowsFormsApp1
             home.Show();
             this.Hide();
         }
-        private void button2_Click(object sender, EventArgs e)
-        {
-            if (panel5.Height == 114)
-            {
-                panel5.Height = 57;
-            }
-            else
-            {
-                panel5.Height = 114;
-            }
-        }
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-            panel5.Height = 57;
-        }
+        //private void button2_Click(object sender, EventArgs e)
+        //{
+        //    if (panel5.Height == 114)
+        //    {
+        //        panel5.Height = 57;
+        //    }
+        //    else
+        //    {
+        //        panel5.Height = 114;
+        //    }
+        //}
+        //private void panel1_Paint(object sender, PaintEventArgs e)
+        //{
+        //    panel5.Height = 57;
+        //}
         private void button1_Click(object sender, EventArgs e)
         {
-            library.OpenCustomerListForm(this);
+            library.OpenUserGridView(this);
         }
-        #endregion
 
         private void changeProfile_Click(object sender, EventArgs e)
         {
@@ -113,8 +112,9 @@ namespace WindowsFormsApp1
         private void AccountInfoBtn_Click(object sender, EventArgs e)
         {
             string Email = Login.username;
-            library.UserInfoDisplay(Email);
+            library.UserInfoDisplay(Email, this);
             this.Hide();
         }
+        #endregion
     }
 }

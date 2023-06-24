@@ -98,7 +98,7 @@ namespace WindowsFormsApp1
                     string phone = this.phone.Text;
                     string fax = this.fax.Text;
                     string password = this.password.Text;
-                    string createdBy = "Customer";
+                    string createdBy = "User";
 
                     SqlCommand cmd = new SqlCommand();
                     cmd.Connection = connection;

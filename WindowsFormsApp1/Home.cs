@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace WindowsFormsApp1
 {
@@ -14,15 +13,15 @@ namespace WindowsFormsApp1
         #endregion Constructor and Disposer
 
         #region Event Handlers
-        protected override bool ProcessDialogKey(Keys keyData)
-        {
-            if (Form.ModifierKeys == Keys.None && keyData == Keys.Escape)
-            {
-                this.Close();
-                return true;
-            }
-            return base.ProcessDialogKey(keyData);
-        }
+        //protected override bool ProcessDialogKey(Keys keyData)
+        //{
+        //    if (Form.ModifierKeys == Keys.None && keyData == Keys.Escape)
+        //    {
+        //        this.Close();
+        //        return true;
+        //    }
+        //    return base.ProcessDialogKey(keyData);
+        //}
         private void form3_Load(object sender, EventArgs e)
         {
             CenterToParent();
@@ -36,9 +35,10 @@ namespace WindowsFormsApp1
         public void password_Click(object sender, EventArgs e)
         {
             UpdatePw updatePw = new UpdatePw();
-            AddOwnedForm(updatePw);
+           // AddOwnedForm(updatePw);
             updatePw.Show();
-            this.Hide();
+           // this.Hide();
+           updatePw.MdiParent = this;
 
             string Email = Login.username;
             updatePw.Email = Email;
@@ -53,8 +53,8 @@ namespace WindowsFormsApp1
             //this.Hide();
 
             string Email = Login.username;
-            library.UserInfoDisplay(Email);
-            this.Hide();
+            library.UserInfoDisplay(Email, this);
+           // this.Hide();
         }
 
         private void logOut_Click(object sender, EventArgs e)
@@ -65,15 +65,15 @@ namespace WindowsFormsApp1
             this.Hide();
         }
 
-        private void customers_Click(object sender, EventArgs e)
+        private void users_Click(object sender, EventArgs e)
         {
-            if (panel4.Height == 114)
+            if (panel4.Height == 171)
             {
                 panel4.Height = 57;
             }
             else
             {
-                panel4.Height = 114;
+                panel4.Height = 171;
             }
         }
 
@@ -85,14 +85,23 @@ namespace WindowsFormsApp1
         private void button1_Click(object sender, EventArgs e)
         {   
             Library library = new Library();
-            library.OpenCustomerListForm(this);
+            library.OpenUserGridView(this);
+        }
+
+        private void productBtn_Click(object sender, EventArgs e)
+        {
+            Product products = new Product();
+            //AddOwnedForm(accounting);
+            products.Show();
+            products.MdiParent = this;
+            //this.Hide();
+        }
+
+        public void button3_Click(object sender, EventArgs e)
+        {
+            Library library = new Library();
+            library.OpenUserListView(this);
         }
         #endregion Event Handlers
-
-        private void accountingBtn_Click(object sender, EventArgs e)
-        {
-            Accounting accounting = new Accounting();
-            accounting.Show();
-        }
     }
 }

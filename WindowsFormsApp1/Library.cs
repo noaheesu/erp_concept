@@ -1,13 +1,9 @@
-﻿// Library.cs
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Security.Cryptography;
 using System.Windows.Forms;
-using static System.Windows.Forms.AxHost;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace WindowsFormsApp1
 {
@@ -56,7 +52,6 @@ namespace WindowsFormsApp1
 
                             MessageBox.Show("Password updated!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             Home home = new Home();
-                            //    AddOwnedForm(home);
                             home.Show();
                             form.Hide();
                         }
@@ -113,14 +108,14 @@ namespace WindowsFormsApp1
 
         public DataTable LoadData(DataGridView grid)
         {
-            string connectionString = Library.GetConnectionString();
+            string connectionString = GetConnectionString();
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
                 SqlDataAdapter sqlDa = new SqlDataAdapter(
                     "SELECT " +
-                    "Email, UserFirstName, UserLastName, Company, Address1, Address2, ZipPostalCode, City, Country, StateProvinceId, PhoneNumber, FaxNumber, Description, CreateDate ,CreatedBy , ModifyDate, ModifiedBy " +
+                    "Email, UserFirstName, UserLastName, Company, Address1, Address2, ZipPostalCode, City, Country, StateProvinceId, PhoneNumber, FaxNumber, Description, CreateDate ,CreatedBy , ModifyDate, ModifiedBy,UID " +
                     "FROM User_Information", connection);
                 DataTable dt = new DataTable();
                 sqlDa.Fill(dt);
@@ -128,6 +123,107 @@ namespace WindowsFormsApp1
                 grid.DataSource = dt;
 
                 return dt;
+            }
+        }
+
+        public ListView LoadListData(ListView list)
+        {
+            string connectionString = GetConnectionString();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                SqlDataAdapter sqlDa = new SqlDataAdapter(
+                    "SELECT " +
+                    "Email, UserFirstName, UserLastName, Company, Address1, Address2, ZipPostalCode, City, Country, StateProvinceId, PhoneNumber, FaxNumber, Description, CreateDate, CreatedBy, ModifyDate, ModifiedBy, UID " +
+                    "FROM User_Information", connection);
+                DataTable dt = new DataTable();
+                sqlDa.Fill(dt);
+
+                list.Items.Clear();
+
+                foreach (DataRow row in dt.Rows)
+                {
+                    ListViewItem item = new ListViewItem(row["Email"].ToString());
+                    item.SubItems.Add(row["UserFirstName"].ToString());
+                    item.SubItems.Add(row["UserLastName"].ToString());
+                    item.SubItems.Add(row["Company"].ToString());
+                    item.SubItems.Add(row["Address1"].ToString());
+                    item.SubItems.Add(row["Address2"].ToString());
+                    item.SubItems.Add(row["ZipPostalCode"].ToString());
+                    item.SubItems.Add(row["City"].ToString());
+                    item.SubItems.Add(row["Country"].ToString());
+                    item.SubItems.Add(row["StateProvinceId"].ToString());
+                    item.SubItems.Add(row["PhoneNumber"].ToString());
+                    item.SubItems.Add(row["FaxNumber"].ToString());
+                    item.SubItems.Add(row["Description"].ToString());
+                    item.SubItems.Add(row["CreateDate"].ToString());
+                    item.SubItems.Add(row["CreatedBy"].ToString());
+                    DateTime modifyDate;
+                    if (DateTime.TryParse(row["ModifyDate"].ToString(), out modifyDate))
+                    {
+                        item.SubItems.Add(modifyDate.ToString("MM/dd/yyyy HH:mm"));
+                    }
+                    else
+                    {
+                        item.SubItems.Add("");
+                    }
+                    item.SubItems.Add(row["ModifiedBy"].ToString());
+                    item.SubItems.Add(row["UID"].ToString());
+
+                    list.Items.Add(item);
+                }
+                return list;
+            }
+        }
+
+        public void LoadListData(ref ListView list)
+        {
+            string connectionString = GetConnectionString();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                SqlDataAdapter sqlDa = new SqlDataAdapter(
+                    "SELECT " +
+                    "Email, UserFirstName, UserLastName, Company, Address1, Address2, ZipPostalCode, City, Country, StateProvinceId, PhoneNumber, FaxNumber, Description, CreateDate, CreatedBy, ModifyDate, ModifiedBy, UID " +
+                    "FROM User_Information", connection);
+                DataTable dt = new DataTable();
+                sqlDa.Fill(dt);
+
+                list.Items.Clear();
+
+                foreach (DataRow row in dt.Rows)
+                {
+                    ListViewItem item = new ListViewItem(row["Email"].ToString());
+                    item.SubItems.Add(row["UserFirstName"].ToString());
+                    item.SubItems.Add(row["UserLastName"].ToString());
+                    item.SubItems.Add(row["Company"].ToString());
+                    item.SubItems.Add(row["Address1"].ToString());
+                    item.SubItems.Add(row["Address2"].ToString());
+                    item.SubItems.Add(row["ZipPostalCode"].ToString());
+                    item.SubItems.Add(row["City"].ToString());
+                    item.SubItems.Add(row["Country"].ToString());
+                    item.SubItems.Add(row["StateProvinceId"].ToString());
+                    item.SubItems.Add(row["PhoneNumber"].ToString());
+                    item.SubItems.Add(row["FaxNumber"].ToString());
+                    item.SubItems.Add(row["Description"].ToString());
+                    item.SubItems.Add(row["CreateDate"].ToString());
+                    item.SubItems.Add(row["CreatedBy"].ToString());
+                    DateTime modifyDate;
+                    if (DateTime.TryParse(row["ModifyDate"].ToString(), out modifyDate))
+                    {
+                        item.SubItems.Add(modifyDate.ToString("MM/dd/yyyy HH:mm"));
+                    }
+                    else
+                    {
+                        item.SubItems.Add("");
+                    }
+                    item.SubItems.Add(row["ModifiedBy"].ToString());
+                    item.SubItems.Add(row["UID"].ToString());
+
+                    list.Items.Add(item);
+                }
             }
         }
 
@@ -180,7 +276,7 @@ namespace WindowsFormsApp1
         {
             List<string> createdBy = new List<string>()
             {
-                "Select State", "Customer", "Admin", "Manager"
+                "Select State", "User", "Admin", "Manager"
             };
             By.Items.AddRange(createdBy.ToArray());
         }
@@ -194,16 +290,35 @@ namespace WindowsFormsApp1
             By.Items.AddRange(modifiedBy.ToArray());
         }
 
-        public void OpenCustomerListForm(Form form)
+        public void OpenUserListView(Form form)
         {
-            Customers customers = new Customers();
-            customers.Show();
-            form.Hide();
+            UserListView userListForm = new UserListView();
 
-            CustomerList customerListForm = new CustomerList();
-            customerListForm.Show();
-            customerListForm.CustomerData();
-            customerListForm.MdiParent = customers;
+            for (int i = 0; i < form.MdiChildren.Length; i++)
+            {
+                if(userListForm.Name == ((UserListView)form.MdiChildren[i]).Name)
+                {
+                    userListForm = (UserListView)form.MdiChildren[i];
+                    userListForm.Focus();
+                    userListForm.Activate();
+                    userListForm.WindowState = FormWindowState.Normal; ;
+                }
+            } 
+
+            userListForm.Show();
+            userListForm.MdiParent = form;
+        }
+
+        public void OpenUserGridView(Form form)
+        {
+            //User user = new User();
+            //user.Show();
+            //form.Hide();
+
+            UserList userListForm = new UserList();
+            userListForm.Show();
+            //customerListForm.CustomerData();
+            userListForm.MdiParent = form;
         }
 
         public void CapitalizeFirstLetter(TextBox textBox)
@@ -241,10 +356,11 @@ namespace WindowsFormsApp1
             return checkEmail;
         }
 
-        public void UserInfoDisplay(string loginId)
+        public void UserInfoDisplay(string loginId, Form form)
         {
             string connectionString = GetConnectionString();
             AccountInfo accountInfo = new AccountInfo();
+            
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 SqlCommand cmd = new SqlCommand();
@@ -274,10 +390,11 @@ namespace WindowsFormsApp1
                     accountInfo.PhoneNumber = phone;
                 }
 
-
                 reader.Close();
             }
             accountInfo.Show();
+            accountInfo.MdiParent = form;
+
         }
 
         public void UserInfoUpdate(string email, TextBox fName, TextBox lName, TextBox companyName, TextBox phoneNumber)
@@ -301,8 +418,8 @@ namespace WindowsFormsApp1
 
                     cmd.CommandText =
                         "UPDATE User_Information " +
-                        "SET UserFirstName = @UserFirstName, UserLastName = @UserLastName, Company = @Company, PhoneNumber = @PhoneNumber" +
-                        "  WHERE Email = @Username";
+                        "SET UserFirstName = @UserFirstName, UserLastName = @UserLastName, Company = @Company, PhoneNumber = @PhoneNumber " +
+                        "WHERE Email = @Username";
 
                     cmd.Parameters.AddWithValue("@Username", userName);
                     cmd.Parameters.AddWithValue("@UserFirstName", firstName);
@@ -318,6 +435,16 @@ namespace WindowsFormsApp1
             {
                 MessageBox.Show("An error occurred while updating the user information: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        public void ResetSearch(TextBox fName, TextBox lName, TextBox zip, TextBox phone, TextBox company, TextBox state)
+        {
+            fName.Clear();
+            lName.Clear();
+            zip.Clear();
+            phone.Clear();
+            company.Clear();
+            state.Clear();
         }
     }
 }

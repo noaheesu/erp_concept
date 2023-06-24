@@ -6,28 +6,49 @@ CREATE TABLE User_Information(
     UserLastName     NVARCHAR(50),
     UserMiddleName   NVARCHAR(50) NULL,
 
-    Email		 NVARCHAR(MAX) NOT NULL,
-    Company		 NVARCHAR(MAX) NULL,
-    Address1	 NVARCHAR(MAX) NOT NULL,
-    Address2	 NVARCHAR(MAX) NULL,
-    ZipPostalCode	 NVARCHAR(MAX) NOT NULL,
-    City		 NVARCHAR(MAX) NOT NULL,
+    Email	     NVARCHAR(MAX) NOT NULL,
+    Company	     NVARCHAR(MAX) NULL,
+    Address1	     NVARCHAR(MAX) NOT NULL,
+    Address2	     NVARCHAR(MAX) NULL,
+    ZipPostalCode    NVARCHAR(MAX) NOT NULL,
+    City	     NVARCHAR(MAX) NOT NULL,
     Country          NVARCHAR(MAX) NOT NULL,
     StateProvinceId  NVARCHAR(MAX) NOT NULL,
     PhoneNumber      NVARCHAR(MAX) NULL,   
     FaxNumber        NVARCHAR(MAX) NULL,
     [Password]       NVARCHAR(MAX) NOT NULL,  
            
-    [Description]    NVARCHAR(MAX),
+    [Description]    NVARCHAR(MAX) NULL,
     CreateDate       DATETIME DEFAULT GETDATE() NOT NULL,
-    CreatedBy        VARCHAR(50) NOT NULL,
+    CreatedBy        VARCHAR(50) NULL,
     ModifyDate       DATETIME NULL,
     ModifiedBy       VARCHAR(50) NULL,
-    RowStamp         TIMESTAMP NOT NULL
+    RowStamp         TIMESTAMP NULL
 );
+
+
+INSERT INTO User_Information (UserFirstName, UserLastName, Email, Company, [Password], Address1, City, StateProvinceId, ZipPostalCode, Country, PhoneNumber )
+VALUES ('David', 'James','test@gmail.com','The Company', '123', '1111 main st', 'Los Angeles',  'California', '90909',  'United States', '(213)-000-0000');
+INSERT INTO User_Information (UserFirstName, UserLastName, Email, Company, [Password], Address1, City, StateProvinceId, ZipPostalCode, Country, PhoneNumber )
+VALUES ('Elon', 'Musk','info@tesla.com','Tesla', '123', '3500 Deer Creek Road', 'Palo Alto',  'California', '94304',  'United States', '(888) 518-3752');
+INSERT INTO User_Information (UserFirstName, UserLastName, Email, Company, [Password], Address1, City, StateProvinceId, ZipPostalCode, Country, PhoneNumber )
+VALUES ('Steve', 'Jobs','steve@apple.com','Apple', '123', 'One Apple Park Way', 'Cupertino', 'California', '95014',  'United States', '(800) 275-2273');
+INSERT INTO User_Information (UserFirstName, UserLastName, Email, Company, [Password], Address1, City, StateProvinceId, ZipPostalCode, Country, PhoneNumber )
+VALUES ('Bill', 'Gates','bill@microsoft ','Mmicrosoft', '123', 'One Microsoft Way', 'Redmond', 'Washington', '98052',  'United States', '(800) 642-7676');
+INSERT INTO User_Information (UserFirstName, UserLastName, Email, Company, [Password], Address1, City, StateProvinceId, ZipPostalCode, Country, PhoneNumber )
+VALUES ('John', 'Doe','john.doe@example.com','ABC Corporation', '123', '123 Main Street', 'Anytown', 'California', '12345',  'United States', '(555) 123-4567');
+INSERT INTO User_Information (UserFirstName, UserLastName, Email, Company, [Password], Address1, City, StateProvinceId, ZipPostalCode, Country, PhoneNumber )
+VALUES ('Jane', 'Smith','jane.smith@example.com','XYZ Corp', '123', '456 Elm Avenue', 'Springfield', 'Illinois', '67890',  'United States', '(555) 987-6543');
+INSERT INTO User_Information (UserFirstName, UserLastName, Email, Company, [Password], Address1, City, StateProvinceId, ZipPostalCode, Country, PhoneNumber )
+VALUES ('David', 'Wilson','david.wilson@hotmail.com','Wilson Enterprises', '123', '789 Oak Street', 'Lexington', 'Kentucky', '54321',  'United States', '(555) 456-7890');
+INSERT INTO User_Information (UserFirstName, UserLastName, Email, Company, [Password], Address1, City, StateProvinceId, ZipPostalCode, Country, PhoneNumber )
+VALUES ('Emily', 'Johnson','emily.johnson@google.com','Johnson & Sons', '123', '321 Pine Avenue', 'Greenville', 'South Carolina', '98765',  'United States', '(555) 789-0123');
+INSERT INTO User_Information (UserFirstName, UserLastName, Email, Company, [Password], Address1, City, StateProvinceId, ZipPostalCode, Country, PhoneNumber )
+VALUES ('Michael', 'Brown','michael.brown@google.com','Brown Industries', '123', '555 Cedar Lane', 'Oakville', 'California', '23456',  'Canada', '(555) 234-5678');
+INSERT INTO User_Information (UserFirstName, UserLastName, Email, Company, [Password], Address1, City, StateProvinceId, ZipPostalCode, Country, PhoneNumber )
+VALUES ('Mark', 'Zuckerberg','mark@facebook.com','Meta', '123', '1 Hacker Way', 'Menlo Park', 'California', '94025',  'United States', '(650) 543-4800');
+INSERT INTO User_Information (UserFirstName, UserLastName, Email, Company, [Password], Address1, City, StateProvinceId, ZipPostalCode, Country, PhoneNumber )
+VALUES ('Josephine', 'Darakjy','josephine_darakjy@darakjy.org','Chanay', '123', '4 B Blue Ridge Blvd', 'Brighton', 'Michigan', '48116',  'United States', '(810) 292-9388');
 
 SELECT *
 FROM User_Information
-
-INSERT INTO User_Information (Email, [Password], Address1, ZipPostalCode, City, Country, StateProvinceId)
-VALUES ('test@gmail.com', '123', '123 main st', '99999', 'Los Angeles', 'United States', 'CA');

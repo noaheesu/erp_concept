@@ -38,7 +38,6 @@
             this.Name = "Form4";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Form4";
-            this.Load += new System.EventHandler(this.Form4_Load);
             this.ResumeLayout(false);
 
         }

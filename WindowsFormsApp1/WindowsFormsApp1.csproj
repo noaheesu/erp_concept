@@ -68,29 +68,41 @@
     <Compile Include="AccountInfo.Designer.cs">
       <DependentUpon>AccountInfo.cs</DependentUpon>
     </Compile>
-    <Compile Include="Accounting.cs">
+    <Compile Include="Product.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Accounting.Designer.cs">
-      <DependentUpon>Accounting.cs</DependentUpon>
+    <Compile Include="Product.Designer.cs">
+      <DependentUpon>Product.cs</DependentUpon>
     </Compile>
-    <Compile Include="Customers.cs">
+    <Compile Include="UserListView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Customers.Designer.cs">
-      <DependentUpon>Customers.cs</DependentUpon>
+    <Compile Include="UserListView.Designer.cs">
+      <DependentUpon>UserListView.cs</DependentUpon>
     </Compile>
-    <Compile Include="CustomerList.cs">
+    <Compile Include="User.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CustomerList.Designer.cs">
-      <DependentUpon>CustomerList.cs</DependentUpon>
+    <Compile Include="User.Designer.cs">
+      <DependentUpon>User.cs</DependentUpon>
     </Compile>
-    <Compile Include="CustomerUpdate.cs">
+    <Compile Include="UserList.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CustomerUpdate.Designer.cs">
-      <DependentUpon>CustomerUpdate.cs</DependentUpon>
+    <Compile Include="UserList.Designer.cs">
+      <DependentUpon>UserList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserUpdate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserUpdate.Designer.cs">
+      <DependentUpon>UserUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserUpdateListView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserUpdateListView.Designer.cs">
+      <DependentUpon>UserUpdateListView.cs</DependentUpon>
     </Compile>
     <Compile Include="Library.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -133,17 +145,23 @@
     <EmbeddedResource Include="AccountInfo.resx">
       <DependentUpon>AccountInfo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Accounting.resx">
-      <DependentUpon>Accounting.cs</DependentUpon>
+    <EmbeddedResource Include="Product.resx">
+      <DependentUpon>Product.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Customers.resx">
-      <DependentUpon>Customers.cs</DependentUpon>
+    <EmbeddedResource Include="UserListView.resx">
+      <DependentUpon>UserListView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CustomerList.resx">
-      <DependentUpon>CustomerList.cs</DependentUpon>
+    <EmbeddedResource Include="User.resx">
+      <DependentUpon>User.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CustomerUpdate.resx">
-      <DependentUpon>CustomerUpdate.cs</DependentUpon>
+    <EmbeddedResource Include="UserList.resx">
+      <DependentUpon>UserList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserUpdate.resx">
+      <DependentUpon>UserUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserUpdateListView.resx">
+      <DependentUpon>UserUpdateListView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>

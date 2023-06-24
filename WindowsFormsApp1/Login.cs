@@ -12,10 +12,9 @@ namespace WindowsFormsApp1
             InitializeComponent();
 
             //SKIP LOGIN FOR TESTING
-            loginId.Text = "test@gmail.com";
-            password.Text = "123";
-            login_button(null, EventArgs.Empty);
-            this.BringToFront();
+            Home home = new Home();
+            home.button3_Click(null, EventArgs.Empty);
+            //this.BringToFront();
         }
         public static string username;
         #endregion Constructor and Disposer
