@@ -52,3 +52,47 @@ VALUES ('Josephine', 'Darakjy','josephine_darakjy@darakjy.org','Chanay', '123', 
 
 SELECT *
 FROM User_Information
+
+
+
+
+
+
+
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+CREATE TABLE Products(
+    ID               INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
+    UserID           INT REFERENCES User_Information(Uid),
+
+    ProductName      NVARCHAR(50),
+    [Description]    NVARCHAR(MAX) NULL,
+    SKU              NVARCHAR(50) NULL,
+
+    Categories	     NVARCHAR(MAX) NULL,
+    Manufacturers    NVARCHAR(MAX) NULL,
+    GTIN	     NVARCHAR(MAX) NULL,
+    Price	     DECIMAL(18,2) NULL,
+    StockQuantity    INT NULL,
+    Published        BIT NOT NULL,
+    [Weight]	     DECIMAL(18,4) NULL,
+    [Length]         DECIMAL(18,4) NULL,
+    Width	     DECIMAL(18,4) NULL,
+    Height           DECIMAL(18,4) NULL,   
+    Picture          NVARCHAR(MAX) NULL,          
+	
+    CreateDate       DATETIME DEFAULT GETDATE() NOT NULL,
+    CreatedBy        NVARCHAR(50) NULL,
+    ModifyDate       DATETIME NULL,
+    ModifiedBy       NVARCHAR(50) NULL,
+    RowStamp         TIMESTAMP NULL
+);
+
+
+
+	INSERT INTO Products([ProductName],[Picture],[Published], SKU, Categories, Manufacturers, Price)
+	VALUES('Ipad Pro 12.9','https://shorturl.at/irBK8','True', 'A2764', 'Tablet', 'Apple', '799.00');
+
+
+SELECT * FROM Products

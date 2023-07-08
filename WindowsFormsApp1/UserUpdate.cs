@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Diagnostics.Eventing.Reader;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace WindowsFormsApp1
@@ -28,16 +30,9 @@ namespace WindowsFormsApp1
             InitializeComponent();
 
             library.CountryList(countryComboBox);
-            countryComboBox.SelectedIndexChanged += countryComboBox_SelectedIndexChanged;
-
             library.States(stateComboBox);
-            stateComboBox.SelectedIndexChanged += stateComboBox_SelectedIndexChanged;
-
             library.CreatedBy(createByComboBox);
-            createByComboBox.SelectedIndexChanged += createByComboBox_SelectedIndexChanged;
-
             library.ModifiedBy(modifiedByComboBox);
-            modifiedByComboBox.SelectedIndexChanged += modifiedByComboBox_SelectedIndexChanged;
         }
 
         public UserUpdate(UserInfo userInfo)
@@ -45,43 +40,13 @@ namespace WindowsFormsApp1
             InitializeComponent();
 
             library.CountryList(countryComboBox);
-           // countryComboBox.SelectedIndexChanged += countryComboBox_SelectedIndexChanged;
-
             library.States(stateComboBox);
-           // stateComboBox.SelectedIndexChanged += stateComboBox_SelectedIndexChanged;
-
             library.CreatedBy(createByComboBox);
-           // createByComboBox.SelectedIndexChanged += createByComboBox_SelectedIndexChanged;
-
             library.ModifiedBy(modifiedByComboBox);
-            //modifiedByComboBox.SelectedIndexChanged += modifiedByComboBox_SelectedIndexChanged;
-
 
             SetUserInfo(userInfo);
         }
 
-        //public CustomerUpdate(string sCustomerName)
-        //{
-        //    InitializeComponent();
-
-        //    firstNameTextBox.Text = sCustomerName;
-        //    lastNameTextBox.Text = sCustomerName;
-
-
-        //    library.CountryList(countryComboBox);
-        //    countryComboBox.SelectedIndexChanged += countryComboBox_SelectedIndexChanged;
-
-        //    library.States(stateComboBox);
-        //    stateComboBox.SelectedIndexChanged += stateComboBox_SelectedIndexChanged;
-
-        //    library.CreatedBy(createByComboBox);
-        //    createByComboBox.SelectedIndexChanged += createByComboBox_SelectedIndexChanged;
-
-        //    library.ModifiedBy(modifiedByComboBox);
-        //    modifiedByComboBox.SelectedIndexChanged += modifiedByComboBox_SelectedIndexChanged;
-        //}
-
-        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         private void SetUserInfo(UserInfo info)
         {
             userInfo = info;
@@ -176,7 +141,6 @@ namespace WindowsFormsApp1
                 string modifyDate = modifyDateTextBox.Text;
                 string modifiedBy = ModifiedByComboBox.Text;
 
-
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = connection;
                 cmd.CommandText =
@@ -214,69 +178,82 @@ namespace WindowsFormsApp1
             }
         }
 
-        private void CreateNewUser()
+        private bool DataValidate()
         {
-            if (string.IsNullOrEmpty(emailTextBox.Text))
+            bool rv = true;
+
+            string email = emailTextBox.Text.Trim();
+
+            // Email format validation using regular expression
+            string emailPattern = @"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$";
+            if (!Regex.IsMatch(email, emailPattern))
             {
-                MessageBox.Show("Please enter email address.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Please enter a valid email address.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 emailTextBox.Focus();
-                return;
+                rv = false;
             }
-            if (string.IsNullOrEmpty(firstNameTextBox.Text))
+            else if (string.IsNullOrWhiteSpace(firstNameTextBox.Text))
             {
                 MessageBox.Show("Please enter first name.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 firstNameTextBox.Focus();
-                return;
+                rv = false;
             }
-            if (string.IsNullOrEmpty(lastNameTextBox.Text))
+            else if (string.IsNullOrWhiteSpace(lastNameTextBox.Text))
             {
                 MessageBox.Show("Please enter last name.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 lastNameTextBox.Focus();
-                return;
+                rv = false;
             }
-            if (string.IsNullOrEmpty(companyTextBox.Text))
+            else if (string.IsNullOrWhiteSpace(companyTextBox.Text))
             {
                 MessageBox.Show("Please enter company.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 companyTextBox.Focus();
-                return;
+                rv = false;
             }
-            if (string.IsNullOrEmpty(addressTextBox.Text))
+            else if (string.IsNullOrWhiteSpace(addressTextBox.Text))
             {
                 MessageBox.Show("Please enter address.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 addressTextBox.Focus();
-                return;
+                rv = false;
             }
-            if (string.IsNullOrEmpty(zipTextBox.Text))
+            else if (string.IsNullOrWhiteSpace(zipTextBox.Text))
             {
                 MessageBox.Show("Please enter zip/postalCode.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 zipTextBox.Focus();
-                return;
+                rv = false;
             }
-            if (string.IsNullOrEmpty(cityTextBox.Text))
+            else if (string.IsNullOrWhiteSpace(cityTextBox.Text))
             {
                 MessageBox.Show("Please enter city.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 cityTextBox.Focus();
-                return;
+                rv = false;
             }
-            if (string.IsNullOrEmpty(countryComboBox.Text))
+            else if (string.IsNullOrEmpty(countryComboBox.Text))
             {
                 MessageBox.Show("Please enter country.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 countryComboBox.Focus();
-                return;
+                rv = false;
             }
-            if (string.IsNullOrEmpty(stateComboBox.Text))
+            else if (string.IsNullOrEmpty(stateComboBox.Text))
             {
                 MessageBox.Show("Please enter state.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 stateComboBox.Focus();
-                return;
+                rv = false;
             }
-            if (string.IsNullOrEmpty(phoneTextBox.Text))
+            else if (string.IsNullOrWhiteSpace(phoneTextBox.Text))
             {
                 MessageBox.Show("Please enter phone number.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 phoneTextBox.Focus();
-                return;
+                rv = false;
             }
+            return rv;
+        }
 
+        private void CreateNewUser()
+        {
+            if (!DataValidate())
+                return;
+          
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
@@ -331,7 +308,6 @@ namespace WindowsFormsApp1
                     cmd.Parameters.AddWithValue("@CreatedBy", createdBy);
                     cmd.Parameters.AddWithValue("@Password", password);
 
-                    // int rowsAffected = cmd.ExecuteNonQuery();
                     int newUserId = Convert.ToInt32(cmd.ExecuteScalar());
 
                     if (newUserId > 0)

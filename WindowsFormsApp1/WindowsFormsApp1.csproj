@@ -74,17 +74,17 @@
     <Compile Include="Product.Designer.cs">
       <DependentUpon>Product.cs</DependentUpon>
     </Compile>
+    <Compile Include="ProductUpdate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProductUpdate.Designer.cs">
+      <DependentUpon>ProductUpdate.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserListView.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="UserListView.Designer.cs">
       <DependentUpon>UserListView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="User.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="User.Designer.cs">
-      <DependentUpon>User.cs</DependentUpon>
     </Compile>
     <Compile Include="UserList.cs">
       <SubType>Form</SubType>
@@ -148,11 +148,11 @@
     <EmbeddedResource Include="Product.resx">
       <DependentUpon>Product.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ProductUpdate.resx">
+      <DependentUpon>ProductUpdate.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserListView.resx">
       <DependentUpon>UserListView.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="User.resx">
-      <DependentUpon>User.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserList.resx">
       <DependentUpon>UserList.cs</DependentUpon>

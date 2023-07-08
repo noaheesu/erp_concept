@@ -85,11 +85,11 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(195, 48);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(112, 24);
+            this.label1.Size = new System.Drawing.Size(113, 28);
             this.label1.TabIndex = 0;
             this.label1.Text = "REGISTER";
             // 
@@ -546,7 +546,7 @@
             this.Controls.Add(this.label1);
             this.Name = "Registration";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Form2";
+            this.Text = "Registration";
             this.Load += new System.EventHandler(this.form2_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

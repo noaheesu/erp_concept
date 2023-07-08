@@ -5,6 +5,10 @@ namespace WindowsFormsApp1
 {
     public partial class Home : Form
     {
+        #region Fields and Properties
+        public Library library = new Library();
+        #endregion Fields and Properties
+
         #region Constructor and Disposer
         public Home()
         {
@@ -13,15 +17,6 @@ namespace WindowsFormsApp1
         #endregion Constructor and Disposer
 
         #region Event Handlers
-        //protected override bool ProcessDialogKey(Keys keyData)
-        //{
-        //    if (Form.ModifierKeys == Keys.None && keyData == Keys.Escape)
-        //    {
-        //        this.Close();
-        //        return true;
-        //    }
-        //    return base.ProcessDialogKey(keyData);
-        //}
         private void form3_Load(object sender, EventArgs e)
         {
             CenterToParent();
@@ -32,29 +27,35 @@ namespace WindowsFormsApp1
             Application.Exit();
         }
 
+        private UpdatePw updatePw = null;
         public void password_Click(object sender, EventArgs e)
         {
-            UpdatePw updatePw = new UpdatePw();
-           // AddOwnedForm(updatePw);
-            updatePw.Show();
-           // this.Hide();
-           updatePw.MdiParent = this;
+            //UpdatePw updatePw = new UpdatePw();
+            //updatePw.Show();
+            //updatePw.MdiParent = this;
 
-            string Email = Login.username;
-            updatePw.Email = Email;
+            //string Email = Login.username;
+            //updatePw.Email = Email;
+            if (updatePw == null)
+            {
+                updatePw = new UpdatePw();
+                updatePw.MdiParent = this;
+
+                string Email = Login.username;
+                updatePw.Email = Email;
+            }
+
+            updatePw.Show();
+            updatePw.Focus();
         }
 
         private void accountInfo_Click(object sender, EventArgs e)
         {
-            Library library = new Library();
-           // AccountInfo accountInfo = new AccountInfo();
-            //AddOwnedForm(accountInfo);
-            //accountInfo.Show();
-            //this.Hide();
+           // library.OpenForm<AccountInfo>(this);
+           // Library library = new Library();
 
-            string Email = Login.username;
-            library.UserInfoDisplay(Email, this);
-           // this.Hide();
+            string email = Login.username;
+            library.OpenAccountInfo(this, email);       
         }
 
         private void logOut_Click(object sender, EventArgs e)
@@ -82,25 +83,27 @@ namespace WindowsFormsApp1
             panel4.Height = 57;
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {   
-            Library library = new Library();
-            library.OpenUserGridView(this);
+        private void userListGrid_Click(object sender, EventArgs e)
+        {
+            //library.OpenUserGridView(this);
+            library.OpenForm<UserList>(this);
         }
 
         private void productBtn_Click(object sender, EventArgs e)
         {
-            Product products = new Product();
-            //AddOwnedForm(accounting);
-            products.Show();
-            products.MdiParent = this;
-            //this.Hide();
+            library.OpenForm<Product>(this);
+
+
+            //Product products = new Product();
+
+           // products.Show();
+           // products.MdiParent = this;
         }
 
-        public void button3_Click(object sender, EventArgs e)
+        public void userListView_Click(object sender, EventArgs e)
         {
-            Library library = new Library();
-            library.OpenUserListView(this);
+            //library.OpenUserListView(this);
+            library.OpenForm<userListView>(this);
         }
         #endregion Event Handlers
     }

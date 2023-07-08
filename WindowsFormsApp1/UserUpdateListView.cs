@@ -2,6 +2,7 @@
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace WindowsFormsApp1
@@ -19,16 +20,9 @@ namespace WindowsFormsApp1
             InitializeComponent();
 
             library.CountryList(countryComboBox);
-            //countryComboBox.SelectedIndexChanged += countryComboBox_SelectedIndexChanged;
-
             library.States(stateComboBox);
-            //stateComboBox.SelectedIndexChanged += stateComboBox_SelectedIndexChanged;
-
             library.CreatedBy(createByComboBox);
-            //createByComboBox.SelectedIndexChanged += createByComboBox_SelectedIndexChanged;
-
             library.ModifiedBy(modifiedByComboBox);
-            //modifiedByComboBox.SelectedIndexChanged += modifiedByComboBox_SelectedIndexChanged;
         }
         #endregion Constructor and Disposer
 
@@ -134,43 +128,47 @@ namespace WindowsFormsApp1
         {
             bool rv = true;
 
-            if (string.IsNullOrEmpty(emailTextBox.Text))
+            string email = emailTextBox.Text.Trim();
+
+            // Email format validation using regular expression
+            string emailPattern = @"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$";
+            if (!Regex.IsMatch(email, emailPattern))
             {
-                MessageBox.Show("Please enter email address.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Please enter a valid email address.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 emailTextBox.Focus();
                 rv = false;
             }
-            else if (string.IsNullOrEmpty(firstNameTextBox.Text))
+            else if (string.IsNullOrWhiteSpace(firstNameTextBox.Text))
             {
                 MessageBox.Show("Please enter first name.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 firstNameTextBox.Focus();
                 rv = false;
             }
-            else if (string.IsNullOrEmpty(lastNameTextBox.Text))
+            else if (string.IsNullOrWhiteSpace(lastNameTextBox.Text))
             {
                 MessageBox.Show("Please enter last name.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 lastNameTextBox.Focus();
                 rv = false;
             }
-            else if (string.IsNullOrEmpty(companyTextBox.Text))
+            else if (string.IsNullOrWhiteSpace(companyTextBox.Text))
             {
                 MessageBox.Show("Please enter company.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 companyTextBox.Focus();
                 rv = false;
             }
-            else if (string.IsNullOrEmpty(addressTextBox.Text))
+            else if (string.IsNullOrWhiteSpace(addressTextBox.Text))
             {
                 MessageBox.Show("Please enter address.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 addressTextBox.Focus();
                 rv = false;
             }
-            else if (string.IsNullOrEmpty(zipTextBox.Text))
+            else if (string.IsNullOrWhiteSpace(zipTextBox.Text))
             {
                 MessageBox.Show("Please enter zip/postalCode.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 zipTextBox.Focus();
                 rv = false;
             }
-            else if (string.IsNullOrEmpty(cityTextBox.Text))
+            else if (string.IsNullOrWhiteSpace(cityTextBox.Text))
             {
                 MessageBox.Show("Please enter city.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 cityTextBox.Focus();
@@ -188,7 +186,7 @@ namespace WindowsFormsApp1
                 stateComboBox.Focus();
                 rv = false;
             }
-            else if (string.IsNullOrEmpty(phoneTextBox.Text))
+            else if (string.IsNullOrWhiteSpace(phoneTextBox.Text))
             {
                 MessageBox.Show("Please enter phone number.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 phoneTextBox.Focus();
@@ -237,9 +235,7 @@ namespace WindowsFormsApp1
                     cmd.Parameters.Clear();
 
                     cmd.CommandText =
-                    //"INSERT INTO User_Information (UserFirstName, UserLastName, Email, Company, Address1, Address2, ZipPostalCode, City, Country, StateProvinceId, PhoneNumber, FaxNumber, [Password] , Description, CreatedBy)" +
-                    //"VALUES (@FirstName, @LastName, @Email, @Company, @Address1, @Address2, @ZipCode, @City, @Country, @State, @Phone, @Fax, @Password, @Description, @CreatedBy)";
-                     "INSERT INTO User_Information (UserFirstName, UserLastName, Email, Company, Address1, Address2, ZipPostalCode, City, Country, StateProvinceId, PhoneNumber, FaxNumber, [Password] , Description, CreatedBy)" +
+                    "INSERT INTO User_Information (UserFirstName, UserLastName, Email, Company, Address1, Address2, ZipPostalCode, City, Country, StateProvinceId, PhoneNumber, FaxNumber, [Password] , Description, CreatedBy)" +
                     "VALUES (@FirstName, @LastName, @Email, @Company, @Address1, @Address2, @ZipCode, @City, @Country, @State, @Phone, @Fax, @Password, @Description, @CreatedBy)" +
                     "SELECT @@IDENTITY;";
 
@@ -259,14 +255,11 @@ namespace WindowsFormsApp1
                     cmd.Parameters.AddWithValue("@CreatedBy", createdBy);
                     cmd.Parameters.AddWithValue("@Password", password);
 
-                    // int rowsAffected = cmd.ExecuteNonQuery();
                     int newUserId = Convert.ToInt32(cmd.ExecuteScalar());
 
-                    // if (rowsAffected > 0)
                     if (newUserId > 0)
                     {
                         MessageBox.Show("User registered successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        //this.Close();
                         emailTextBox.ReadOnly = true;
                         saveBtn.Visible = true;
                         deleteBtn.Visible = true;
@@ -330,7 +323,6 @@ namespace WindowsFormsApp1
 
         private void saveBtn_Click(object sender, EventArgs e)
         {
-            // modifyDateTextBox.Text = DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss");
             UpdateUserInfo();
         }
         #endregion Event Handlers

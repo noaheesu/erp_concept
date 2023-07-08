@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace WindowsFormsApp1
@@ -26,58 +27,69 @@ namespace WindowsFormsApp1
         #endregion Constructor and Disposer
 
         #region Private Method
+        private bool DataValidate()
+        {
+            bool rv = true;
+            string emailText = email.Text.Trim();
+            string emailPattern = @"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$";
+
+            if (string.IsNullOrWhiteSpace(firstName.Text))
+            {
+                MessageBox.Show("Please enter first name.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                firstName.Focus();
+                rv = false;
+            }
+            else if (string.IsNullOrWhiteSpace(lastName.Text))
+            {
+                MessageBox.Show("Please enter last name.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                lastName.Focus();
+                rv = false;
+            }
+            else if (!Regex.IsMatch(emailText, emailPattern))
+            {
+                MessageBox.Show("Please enter a valid email address.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                email.Focus();
+                rv = false;
+            }
+            else if (string.IsNullOrWhiteSpace(address1.Text))
+            {
+                MessageBox.Show("Please enter address.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                address1.Focus();
+                rv = false;
+            }
+            else if (string.IsNullOrWhiteSpace(postalCode.Text))
+            {
+                MessageBox.Show("Please enter zip/postalCode.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                postalCode.Focus();
+                rv = false;
+            }
+            else if (string.IsNullOrWhiteSpace(city.Text))
+            {
+                MessageBox.Show("Please enter city.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                city.Focus();
+                rv = false;
+            }
+            else if (string.IsNullOrWhiteSpace(phone.Text))
+            {
+                MessageBox.Show("Please enter phone number.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                phone.Focus();
+                rv = false;
+            }
+            else if (privacyPolicy.Checked != true)
+            {
+                MessageBox.Show("Please read and check the Privacy Policy.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                rv = false;
+            }
+            return rv;
+        }
+
         private void CreateNewUser()
         {
             string password1 = confirmPassword.Text;
             string password2 = password.Text;
 
-            if (string.IsNullOrEmpty(firstName.Text))
-            {
-                MessageBox.Show("Please enter first name.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                firstName.Focus();
+            if (!DataValidate())
                 return;
-            }
-            if (string.IsNullOrEmpty(lastName.Text))
-            {
-                MessageBox.Show("Please enter last name.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                lastName.Focus();
-                return;
-            }
-            if (string.IsNullOrEmpty(email.Text))
-            {
-                MessageBox.Show("Please enter email address.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                email.Focus();
-                return;
-            }
-            if (string.IsNullOrEmpty(address1.Text))
-            {
-                MessageBox.Show("Please enter address.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                address1.Focus();
-                return;
-            }
-            if (string.IsNullOrEmpty(postalCode.Text))
-            {
-                MessageBox.Show("Please enter zip/postalCode.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                postalCode.Focus();
-                return;
-            }
-            if (string.IsNullOrEmpty(city.Text))
-            {
-                MessageBox.Show("Please enter city.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                city.Focus();
-                return;
-            }
-            if (string.IsNullOrEmpty(phone.Text))
-            {
-                MessageBox.Show("Please enter phone number.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                phone.Focus();
-                return;
-            }
-            if (privacyPolicy.Checked != true)
-            {
-                MessageBox.Show("Please read and check the Privacy Policy.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
 
             if (password1 == password2 && password1 != "")
             {

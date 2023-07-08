@@ -1,12 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Net;
 using System.Windows.Forms;
+using System.Drawing;
+using System.IO;
+using System.Linq;
 
 namespace WindowsFormsApp1
 {
+    public static class Uid
+    {
+        public static string UserId { get; set; }
+    }
+
     public partial class Library
     {
         public static string GetConnectionString()
@@ -94,6 +104,10 @@ namespace WindowsFormsApp1
 
                     if (count > 0)
                     {
+                        // If the login is successful, retrieve the user's ID
+                        cmd.CommandText = "SELECT UID FROM User_Information WHERE Email = @Username";
+                        Uid.UserId = cmd.ExecuteScalar().ToString();
+
                         Home home = new Home();
                         home.Show();
                         form.Hide();
@@ -106,7 +120,106 @@ namespace WindowsFormsApp1
             }
         }
 
-        public DataTable LoadData(DataGridView grid)
+        //To display picture
+        public class DataGridViewImageColumnEx : DataGridViewImageColumn
+        {
+            public DataGridViewImageColumnEx()
+            {
+                CellTemplate = new DataGridViewImageCellEx();
+            }
+        }
+
+        // To resize picture and display URL as image
+        public class DataGridViewImageCellEx : DataGridViewImageCell
+        {
+            // Adjust the size of the image
+            public int ImageWidth { get; set; } = 100;
+            public int ImageHeight { get; set; } = 100;
+
+            protected override object GetFormattedValue(object value, int rowIndex, ref DataGridViewCellStyle cellStyle, TypeConverter valueTypeConverter, TypeConverter formattedValueTypeConverter, DataGridViewDataErrorContexts context)
+            {
+                if (value is string imageUrl)
+                {
+                    using (var webClient = new WebClient())
+                    {
+                        try
+                        {
+                            var imageBytes = webClient.DownloadData(imageUrl);
+                            var image = Image.FromStream(new MemoryStream(imageBytes));
+
+                            // Resize the image to fit the specified width and height
+                            var resizedImage = ResizeImage(image, ImageWidth, ImageHeight);
+                            return resizedImage;
+                        }
+                        catch (Exception)
+                        {
+                            // If there's an error downloading the image, return null or a placeholder image
+                            return null; // Or return a placeholder image here
+                        }
+                    }
+                }
+
+                return base.GetFormattedValue(value, rowIndex, ref cellStyle, valueTypeConverter, formattedValueTypeConverter, context);
+            }
+
+            private Image ResizeImage(Image image, int width, int height)
+            {
+                var resizedImage = new Bitmap(width, height);
+                using (var graphics = Graphics.FromImage(resizedImage))
+                {
+                    graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+                    graphics.DrawImage(image, 0, 0, width, height);
+                }
+                return resizedImage;
+            }
+        }
+
+        public DataTable LoadProductData(DataGridView productData)
+        {
+            string connectionString = GetConnectionString();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                SqlDataAdapter sqlDa = new SqlDataAdapter(
+                    "SELECT " +
+                    "Picture, ProductName, SKU, Price, StockQuantity, Published, [Description], Categories, [Weight],[Length],Width, Height, CreateDate, ID    " +
+                    "FROM Products "
+                    //+ "WHERE UserId = @UID"
+                    , connection);
+
+                DataTable dt = new DataTable();
+                sqlDa.Fill(dt);
+                productData.Columns["CreateDate"].DefaultCellStyle.Format = "MM/dd/yyyy HH:mm:ss";
+
+                /////////////////////////////////////
+                // Remove existing image column (if any)
+                var existingImageColumn = productData.Columns.OfType<DataGridViewImageColumnEx>().FirstOrDefault();
+                if (existingImageColumn != null)
+                {
+                    productData.Columns.Remove(existingImageColumn);
+                }
+
+                // Create the custom image column
+                var pictureColumn = new DataGridViewImageColumnEx
+                {
+                    DataPropertyName = "Picture",
+                    HeaderText = "Picture",
+                    Width = 100,
+                    ImageLayout = DataGridViewImageCellLayout.Zoom,
+                };
+
+                // Insert the image column at the desired position
+                productData.Columns.Insert(0, pictureColumn);
+                /////////////////////////////////////
+
+                productData.DataSource = dt;
+
+                return dt;
+            }
+        }
+
+        public DataTable LoadUserData(DataGridView grid)
         {
             string connectionString = GetConnectionString();
 
@@ -126,7 +239,8 @@ namespace WindowsFormsApp1
             }
         }
 
-        public ListView LoadListData(ListView list)
+        //Use this instead of ref, need to return dv for RowFilter erarch name.
+        public DataView LoadUserListData(ListView list)
         {
             string connectionString = GetConnectionString();
 
@@ -173,65 +287,68 @@ namespace WindowsFormsApp1
 
                     list.Items.Add(item);
                 }
-                return list;
+                DataView dv = new DataView(dt);
+                return dv;
             }
         }
 
-        public void LoadListData(ref ListView list)
-        {
-            string connectionString = GetConnectionString();
+        //public void LoadListData(ref ListView list)
+        //{
+        //    string connectionString = GetConnectionString();
 
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                connection.Open();
-                SqlDataAdapter sqlDa = new SqlDataAdapter(
-                    "SELECT " +
-                    "Email, UserFirstName, UserLastName, Company, Address1, Address2, ZipPostalCode, City, Country, StateProvinceId, PhoneNumber, FaxNumber, Description, CreateDate, CreatedBy, ModifyDate, ModifiedBy, UID " +
-                    "FROM User_Information", connection);
-                DataTable dt = new DataTable();
-                sqlDa.Fill(dt);
+        //    using (SqlConnection connection = new SqlConnection(connectionString))
+        //    {
+        //        connection.Open();
+        //        SqlDataAdapter sqlDa = new SqlDataAdapter(
+        //            "SELECT " +
+        //            "Email, UserFirstName, UserLastName, Company, Address1, Address2, ZipPostalCode, City, Country, StateProvinceId, PhoneNumber, FaxNumber, Description, CreateDate, CreatedBy, ModifyDate, ModifiedBy, UID " +
+        //            "FROM User_Information", connection);
+        //        DataTable dt = new DataTable();
+        //        sqlDa.Fill(dt);
 
-                list.Items.Clear();
+        //        //dt.Columns.Add("UserFirstName");
 
-                foreach (DataRow row in dt.Rows)
-                {
-                    ListViewItem item = new ListViewItem(row["Email"].ToString());
-                    item.SubItems.Add(row["UserFirstName"].ToString());
-                    item.SubItems.Add(row["UserLastName"].ToString());
-                    item.SubItems.Add(row["Company"].ToString());
-                    item.SubItems.Add(row["Address1"].ToString());
-                    item.SubItems.Add(row["Address2"].ToString());
-                    item.SubItems.Add(row["ZipPostalCode"].ToString());
-                    item.SubItems.Add(row["City"].ToString());
-                    item.SubItems.Add(row["Country"].ToString());
-                    item.SubItems.Add(row["StateProvinceId"].ToString());
-                    item.SubItems.Add(row["PhoneNumber"].ToString());
-                    item.SubItems.Add(row["FaxNumber"].ToString());
-                    item.SubItems.Add(row["Description"].ToString());
-                    item.SubItems.Add(row["CreateDate"].ToString());
-                    item.SubItems.Add(row["CreatedBy"].ToString());
-                    DateTime modifyDate;
-                    if (DateTime.TryParse(row["ModifyDate"].ToString(), out modifyDate))
-                    {
-                        item.SubItems.Add(modifyDate.ToString("MM/dd/yyyy HH:mm"));
-                    }
-                    else
-                    {
-                        item.SubItems.Add("");
-                    }
-                    item.SubItems.Add(row["ModifiedBy"].ToString());
-                    item.SubItems.Add(row["UID"].ToString());
+        //        list.Items.Clear();
 
-                    list.Items.Add(item);
-                }
-            }
-        }
+        //        foreach (DataRow row in dt.Rows)
+        //        {
+        //            ListViewItem item = new ListViewItem(row["Email"].ToString());
+        //            item.SubItems.Add(row["UserFirstName"].ToString());
+        //            item.SubItems.Add(row["UserLastName"].ToString());
+        //            item.SubItems.Add(row["Company"].ToString());
+        //            item.SubItems.Add(row["Address1"].ToString());
+        //            item.SubItems.Add(row["Address2"].ToString());
+        //            item.SubItems.Add(row["ZipPostalCode"].ToString());
+        //            item.SubItems.Add(row["City"].ToString());
+        //            item.SubItems.Add(row["Country"].ToString());
+        //            item.SubItems.Add(row["StateProvinceId"].ToString());
+        //            item.SubItems.Add(row["PhoneNumber"].ToString());
+        //            item.SubItems.Add(row["FaxNumber"].ToString());
+        //            item.SubItems.Add(row["Description"].ToString());
+        //            item.SubItems.Add(row["CreateDate"].ToString());
+        //            item.SubItems.Add(row["CreatedBy"].ToString());
+        //            DateTime modifyDate;
+        //            if (DateTime.TryParse(row["ModifyDate"].ToString(), out modifyDate))
+        //            {
+        //                item.SubItems.Add(modifyDate.ToString("MM/dd/yyyy HH:mm"));
+        //            }
+        //            else
+        //            {
+        //                item.SubItems.Add("");
+        //            }
+        //            item.SubItems.Add(row["ModifiedBy"].ToString());
+        //            item.SubItems.Add(row["UID"].ToString());
+
+        //            list.Items.Add(item);
+        //        }
+        //    }
+        //}
 
         public void CountryList(ComboBox country)
         {
             List<string> countries = new List<string>()
                 {
-                    "Select State",
+                    "Select country",
                     "United States",
                     "China",
                     "Japan",
@@ -260,7 +377,7 @@ namespace WindowsFormsApp1
         {
             List<string> states = new List<string>()
             {
-                "Select State", "Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut",
+                "Select state", "Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut",
                 "Delaware", "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa",
                 "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan",
                 "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire",
@@ -276,7 +393,7 @@ namespace WindowsFormsApp1
         {
             List<string> createdBy = new List<string>()
             {
-                "Select State", "User", "Admin", "Manager"
+                "Select creator", "User", "Admin", "Manager"
             };
             By.Items.AddRange(createdBy.ToArray());
         }
@@ -285,39 +402,46 @@ namespace WindowsFormsApp1
         {
             List<string> modifiedBy = new List<string>()
             {
-                "Select State", "Admin", "Manager"
+                "Select modifier", "Admin", "Manager"
             };
             By.Items.AddRange(modifiedBy.ToArray());
         }
 
-        public void OpenUserListView(Form form)
+        public void OpenForm<T>(Form form) where T : Form, new()
         {
-            UserListView userListForm = new UserListView();
+            T openedForm = null;
 
             for (int i = 0; i < form.MdiChildren.Length; i++)
             {
-                if(userListForm.Name == ((UserListView)form.MdiChildren[i]).Name)
+                if (form.MdiChildren[i] is T && form.MdiChildren[i].Name == typeof(T).Name)
                 {
-                    userListForm = (UserListView)form.MdiChildren[i];
-                    userListForm.Focus();
-                    userListForm.Activate();
-                    userListForm.WindowState = FormWindowState.Normal; ;
+                    openedForm = (T)form.MdiChildren[i];
+                    openedForm.Focus();
+                    openedForm.Activate();
+                    openedForm.WindowState = FormWindowState.Normal;
+                    break;
                 }
-            } 
+            }
 
-            userListForm.Show();
-            userListForm.MdiParent = form;
+            if (openedForm == null)
+            {
+                openedForm = new T();
+                openedForm.MdiParent = form;
+                openedForm.Show();
+            }
         }
 
         public void OpenUserGridView(Form form)
         {
-            //User user = new User();
-            //user.Show();
-            //form.Hide();
-
             UserList userListForm = new UserList();
             userListForm.Show();
-            //customerListForm.CustomerData();
+            userListForm.MdiParent = form;
+        }
+
+        public void OpenUserListView(Form form)
+        {
+            userListView userListForm = new userListView();
+            userListForm.Show();
             userListForm.MdiParent = form;
         }
 
@@ -356,45 +480,91 @@ namespace WindowsFormsApp1
             return checkEmail;
         }
 
-        public void UserInfoDisplay(string loginId, Form form)
+        //public void OpenAccountInfo(Form form, string loginId)
+        //{
+        //    string connectionString = GetConnectionString();
+        //    AccountInfo accountInfo = new AccountInfo();
+
+        //    using (SqlConnection connection = new SqlConnection(connectionString))
+        //    {
+        //        SqlCommand cmd = new SqlCommand();
+        //        connection.Open();
+
+        //        string userName = loginId;
+
+        //        cmd.CommandText = "SELECT UserFirstName, UserLastName, Company, PhoneNumber " +
+        //            "FROM User_Information " +
+        //            "WHERE Email = @Username";
+        //        cmd.Parameters.AddWithValue("@Username", userName);
+
+        //        cmd.Connection = connection;
+
+        //        SqlDataReader reader = cmd.ExecuteReader();
+        //        if (reader.Read())
+        //        {
+        //            string firstName = reader["UserFirstName"].ToString();
+        //            string lastName = reader["UserLastName"].ToString();
+        //            string company = reader["Company"].ToString();
+        //            string phone = reader["PhoneNumber"].ToString();
+
+        //            accountInfo.FirstName = firstName;
+        //            accountInfo.LastName = lastName;
+        //            accountInfo.Email = loginId;
+        //            accountInfo.Company = company;
+        //            accountInfo.PhoneNumber = phone;
+        //        }
+
+        //        reader.Close();
+        //    }
+        //    accountInfo.Show();
+        //    accountInfo.MdiParent = form;
+        //}
+        private AccountInfo accountInfo = null;
+
+        public void OpenAccountInfo(Form form, string loginId)
         {
-            string connectionString = GetConnectionString();
-            AccountInfo accountInfo = new AccountInfo();
-            
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            if (accountInfo == null)
             {
-                SqlCommand cmd = new SqlCommand();
-                connection.Open();
+                string connectionString = GetConnectionString();
+                accountInfo = new AccountInfo();
 
-                string userName = loginId;
-
-                cmd.CommandText = "SELECT UserFirstName, UserLastName, Company, PhoneNumber " +
-                    "FROM User_Information " +
-                    "WHERE Email = @Username";
-                cmd.Parameters.AddWithValue("@Username", userName);
-
-                cmd.Connection = connection;
-
-                SqlDataReader reader = cmd.ExecuteReader();
-                if (reader.Read())
+                using (SqlConnection connection = new SqlConnection(connectionString))
                 {
-                    string firstName = reader["UserFirstName"].ToString();
-                    string lastName = reader["UserLastName"].ToString();
-                    string company = reader["Company"].ToString();
-                    string phone = reader["PhoneNumber"].ToString();
+                    SqlCommand cmd = new SqlCommand();
+                    connection.Open();
 
-                    accountInfo.FirstName = firstName;
-                    accountInfo.LastName = lastName;
-                    accountInfo.Email = loginId;
-                    accountInfo.Company = company;
-                    accountInfo.PhoneNumber = phone;
+                    string userName = loginId;
+
+                    cmd.CommandText = "SELECT UserFirstName, UserLastName, Company, PhoneNumber " +
+                        "FROM User_Information " +
+                        "WHERE Email = @Username";
+                    cmd.Parameters.AddWithValue("@Username", userName);
+
+                    cmd.Connection = connection;
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        string firstName = reader["UserFirstName"].ToString();
+                        string lastName = reader["UserLastName"].ToString();
+                        string company = reader["Company"].ToString();
+                        string phone = reader["PhoneNumber"].ToString();
+
+                        accountInfo.FirstName = firstName;
+                        accountInfo.LastName = lastName;
+                        accountInfo.Email = loginId;
+                        accountInfo.Company = company;
+                        accountInfo.PhoneNumber = phone;
+                    }
+
+                    reader.Close();
                 }
 
-                reader.Close();
+                accountInfo.MdiParent = form;
             }
-            accountInfo.Show();
-            accountInfo.MdiParent = form;
 
+            accountInfo.Show();
+            accountInfo.Focus();
         }
 
         public void UserInfoUpdate(string email, TextBox fName, TextBox lName, TextBox companyName, TextBox phoneNumber)

@@ -1,23 +1,24 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
 
 namespace WindowsFormsApp1
 {
-    public partial class UserListView : Form
+    public partial class userListView : Form
     {
         #region Fields and Properties
-        private DataTable dt = new DataTable();
+        private DataTable dt;
         private DataView dv;
         public Library library = new Library();
         #endregion Fields and Properties
 
         #region Constructor and Disposer
-        public UserListView()
+        public userListView()
         {
             InitializeComponent();
+            dt = new DataTable();
+            dv = new DataView(dt);
             UserListData();
         }
         #endregion Constructor and Disposer
@@ -25,12 +26,9 @@ namespace WindowsFormsApp1
         #region Private Method
         private void UserListData()
         {
-            //listView1 = library.LoadListData(listView1);
+            //library.LoadListData(ref listView1);
+            dv = library.LoadUserListData(listView1);
 
-            library.LoadListData(ref listView1);
-
-            //dt = library.LoadListData(listView1);
-            //dv = dt.DefaultView;
         }
 
         private void EditUserInfoByStructListView()
@@ -101,7 +99,7 @@ namespace WindowsFormsApp1
         private void SearchWith(string name, TextBox text)
         {
             dv.RowFilter = $"{name} LIKE '%" + text.Text + "%'";
-            listView1.Items.Clear(); // Clear the ListView
+            listView1.Items.Clear();
 
             foreach (DataRowView rowView in dv)
             {
@@ -125,7 +123,7 @@ namespace WindowsFormsApp1
                 item.SubItems.Add(row["ModifiedBy"].ToString());
                 item.SubItems.Add(row["UID"].ToString());
 
-                listView1.Items.Add(item); // Add the item to the ListView
+                listView1.Items.Add(item);
             }
         }
         #endregion Private Method

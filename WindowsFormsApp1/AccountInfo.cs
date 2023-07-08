@@ -52,68 +52,10 @@ namespace WindowsFormsApp1
             return base.ProcessDialogKey(keyData);
         }
 
-        private void homeBtn_Click(object sender, EventArgs e)
-        {
-            Home home = new Home();
-            AddOwnedForm(home);
-            home.Show();
-            this.Hide();
-        }
-
-        private void password_Click(object sender, EventArgs e)
-        {
-            UpdatePw updatePw = new UpdatePw();
-            AddOwnedForm(updatePw);
-            updatePw.Show();
-            this.Hide();
-
-            string Email = Login.username;
-            updatePw.Email = Email;
-        }
-
-        private void closebtn_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
-
-        private void back_Click(object sender, EventArgs e)
-        {
-            Home home = new Home();
-            AddOwnedForm(home);
-            home.Show();
-            this.Hide();
-        }
-        //private void button2_Click(object sender, EventArgs e)
-        //{
-        //    if (panel5.Height == 114)
-        //    {
-        //        panel5.Height = 57;
-        //    }
-        //    else
-        //    {
-        //        panel5.Height = 114;
-        //    }
-        //}
-        //private void panel1_Paint(object sender, PaintEventArgs e)
-        //{
-        //    panel5.Height = 57;
-        //}
-        private void button1_Click(object sender, EventArgs e)
-        {
-            library.OpenUserGridView(this);
-        }
-
         private void changeProfile_Click(object sender, EventArgs e)
         {
             string Email = Login.username;
             library.UserInfoUpdate(Email, firstName, lastName, company, phoneNumber);
-        }
-
-        private void AccountInfoBtn_Click(object sender, EventArgs e)
-        {
-            string Email = Login.username;
-            library.UserInfoDisplay(Email, this);
-            this.Hide();
         }
         #endregion
     }

@@ -10,11 +10,6 @@ namespace WindowsFormsApp1
         public Login()
         {
             InitializeComponent();
-
-            //SKIP LOGIN FOR TESTING
-            Home home = new Home();
-            home.button3_Click(null, EventArgs.Empty);
-            //this.BringToFront();
         }
         public static string username;
         #endregion Constructor and Disposer
@@ -29,8 +24,6 @@ namespace WindowsFormsApp1
             }
             if (Form.ModifierKeys == Keys.None && keyData == Keys.Enter)
             {
-                //Library library = new Library();
-                //library.LoginUser(loginId, password, this);
                 login_button(null, EventArgs.Empty);
                 return true;
             }

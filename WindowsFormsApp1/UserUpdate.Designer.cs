@@ -88,7 +88,7 @@
             this.displayBox.BackColor = System.Drawing.Color.Gainsboro;
             this.displayBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.displayBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.displayBox.Location = new System.Drawing.Point(298, 20);
+            this.displayBox.Location = new System.Drawing.Point(239, 21);
             this.displayBox.Name = "displayBox";
             this.displayBox.Size = new System.Drawing.Size(234, 31);
             this.displayBox.TabIndex = 5;
@@ -113,7 +113,7 @@
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.Location = new System.Drawing.Point(17, 20);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(282, 31);
+            this.label13.Size = new System.Drawing.Size(223, 31);
             this.label13.TabIndex = 2;
             this.label13.Text = "Edit user details -";
             // 
@@ -191,6 +191,7 @@
             this.modifyDateTextBox.Location = new System.Drawing.Point(258, 569);
             this.modifyDateTextBox.Mask = "00/00/0000 90:00";
             this.modifyDateTextBox.Name = "modifyDateTextBox";
+            this.modifyDateTextBox.ReadOnly = true;
             this.modifyDateTextBox.Size = new System.Drawing.Size(394, 24);
             this.modifyDateTextBox.TabIndex = 70;
             this.modifyDateTextBox.ValidatingType = typeof(System.DateTime);
@@ -330,9 +331,9 @@
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
             this.label15.Location = new System.Drawing.Point(125, 461);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(83, 18);
+            this.label15.Size = new System.Drawing.Size(82, 18);
             this.label15.TabIndex = 58;
-            this.label15.Text = "Description";
+            this.label15.Text = "Comments";
             // 
             // faxTextBox
             // 

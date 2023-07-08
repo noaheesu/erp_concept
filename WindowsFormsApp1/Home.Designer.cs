@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Home));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.pictureBox8 = new System.Windows.Forms.PictureBox();
             this.productBtn = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -39,9 +40,9 @@
             this.pictureBox9 = new System.Windows.Forms.PictureBox();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
-            this.button3 = new System.Windows.Forms.Button();
+            this.userListViewButton = new System.Windows.Forms.Button();
             this.userBtn = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.userListGridButton = new System.Windows.Forms.Button();
             this.homeBtn = new System.Windows.Forms.Button();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
@@ -53,8 +54,8 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.pictureBox8 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
@@ -66,7 +67,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -88,6 +88,16 @@
             this.panel1.Size = new System.Drawing.Size(270, 712);
             this.panel1.TabIndex = 0;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // pictureBox8
+            // 
+            this.pictureBox8.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox8.Image")));
+            this.pictureBox8.Location = new System.Drawing.Point(17, 395);
+            this.pictureBox8.Name = "pictureBox8";
+            this.pictureBox8.Size = new System.Drawing.Size(31, 31);
+            this.pictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox8.TabIndex = 60;
+            this.pictureBox8.TabStop = false;
             // 
             // productBtn
             // 
@@ -142,9 +152,9 @@
             this.panel4.Controls.Add(this.pictureBox9);
             this.panel4.Controls.Add(this.pictureBox7);
             this.panel4.Controls.Add(this.pictureBox6);
-            this.panel4.Controls.Add(this.button3);
+            this.panel4.Controls.Add(this.userListViewButton);
             this.panel4.Controls.Add(this.userBtn);
-            this.panel4.Controls.Add(this.button1);
+            this.panel4.Controls.Add(this.userListGridButton);
             this.panel4.Cursor = System.Windows.Forms.Cursors.Hand;
             this.panel4.Location = new System.Drawing.Point(1, 446);
             this.panel4.Name = "panel4";
@@ -181,20 +191,20 @@
             this.pictureBox6.TabIndex = 49;
             this.pictureBox6.TabStop = false;
             // 
-            // button3
+            // userListViewButton
             // 
-            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.button3.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.ForeColor = System.Drawing.Color.White;
-            this.button3.Location = new System.Drawing.Point(0, 114);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(270, 57);
-            this.button3.TabIndex = 59;
-            this.button3.Text = "User List View";
-            this.button3.UseVisualStyleBackColor = false;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.userListViewButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.userListViewButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
+            this.userListViewButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.userListViewButton.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.userListViewButton.ForeColor = System.Drawing.Color.White;
+            this.userListViewButton.Location = new System.Drawing.Point(0, 114);
+            this.userListViewButton.Name = "userListViewButton";
+            this.userListViewButton.Size = new System.Drawing.Size(270, 57);
+            this.userListViewButton.TabIndex = 59;
+            this.userListViewButton.Text = "User List View";
+            this.userListViewButton.UseVisualStyleBackColor = false;
+            this.userListViewButton.Click += new System.EventHandler(this.userListView_Click);
             // 
             // userBtn
             // 
@@ -212,20 +222,20 @@
             this.userBtn.UseVisualStyleBackColor = false;
             this.userBtn.Click += new System.EventHandler(this.users_Click);
             // 
-            // button1
+            // userListGridButton
             // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(0, 57);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(270, 57);
-            this.button1.TabIndex = 52;
-            this.button1.Text = "User Grid View";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.userListGridButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.userListGridButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
+            this.userListGridButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.userListGridButton.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.userListGridButton.ForeColor = System.Drawing.Color.White;
+            this.userListGridButton.Location = new System.Drawing.Point(0, 57);
+            this.userListGridButton.Name = "userListGridButton";
+            this.userListGridButton.Size = new System.Drawing.Size(270, 57);
+            this.userListGridButton.TabIndex = 52;
+            this.userListGridButton.Text = "User Grid View";
+            this.userListGridButton.UseVisualStyleBackColor = false;
+            this.userListGridButton.Click += new System.EventHandler(this.userListGrid_Click);
             // 
             // homeBtn
             // 
@@ -360,16 +370,6 @@
             this.pictureBox4.TabIndex = 0;
             this.pictureBox4.TabStop = false;
             // 
-            // pictureBox8
-            // 
-            this.pictureBox8.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox8.Image")));
-            this.pictureBox8.Location = new System.Drawing.Point(17, 395);
-            this.pictureBox8.Name = "pictureBox8";
-            this.pictureBox8.Size = new System.Drawing.Size(31, 31);
-            this.pictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox8.TabIndex = 60;
-            this.pictureBox8.TabStop = false;
-            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -382,9 +382,10 @@
             this.IsMdiContainer = true;
             this.Name = "Home";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "17, 269";
+            this.Text = "Main";
             this.Load += new System.EventHandler(this.form3_Load);
             this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
@@ -396,7 +397,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -414,7 +414,7 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button userListGridButton;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.PictureBox pictureBox6;
@@ -425,7 +425,7 @@
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.Button productBtn;
         private System.Windows.Forms.PictureBox pictureBox9;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button userListViewButton;
         private System.Windows.Forms.PictureBox pictureBox8;
     }
 }

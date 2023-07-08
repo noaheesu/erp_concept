@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -69,23 +71,24 @@
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
             this.dataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(226)))), ((int)(((byte)(224)))));
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            this.dataGridView1.ColumnHeadersHeight = 35;
+            this.dataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(122)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(45)))), ((int)(((byte)(50)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.dataGridView1.ColumnHeadersHeight = 30;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Email,
             this.UserFirstName,
@@ -102,15 +105,32 @@
             this.ModifyDate,
             this.ModifiedBy,
             this.uid});
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView1.EnableHeadersVisualStyles = false;
             this.dataGridView1.GridColor = System.Drawing.SystemColors.ControlDarkDark;
             this.dataGridView1.Location = new System.Drawing.Point(0, 76);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridView1.RowTemplate.DividerHeight = 3;
             this.dataGridView1.RowTemplate.Height = 30;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(887, 456);
+            this.dataGridView1.Size = new System.Drawing.Size(830, 456);
             this.dataGridView1.TabIndex = 3;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
@@ -121,7 +141,7 @@
             this.Email.HeaderText = "Email";
             this.Email.Name = "Email";
             this.Email.ReadOnly = true;
-            this.Email.Width = 76;
+            this.Email.Width = 70;
             // 
             // UserFirstName
             // 
@@ -130,7 +150,7 @@
             this.UserFirstName.MinimumWidth = 8;
             this.UserFirstName.Name = "UserFirstName";
             this.UserFirstName.ReadOnly = true;
-            this.UserFirstName.Width = 117;
+            this.UserFirstName.Width = 109;
             // 
             // UserLastName
             // 
@@ -138,7 +158,7 @@
             this.UserLastName.HeaderText = "Last Name";
             this.UserLastName.Name = "UserLastName";
             this.UserLastName.ReadOnly = true;
-            this.UserLastName.Width = 116;
+            this.UserLastName.Width = 107;
             // 
             // Company
             // 
@@ -146,7 +166,7 @@
             this.Company.HeaderText = "Company name";
             this.Company.Name = "Company";
             this.Company.ReadOnly = true;
-            this.Company.Width = 150;
+            this.Company.Width = 141;
             // 
             // Address1
             // 
@@ -154,7 +174,7 @@
             this.Address1.HeaderText = "Address";
             this.Address1.Name = "Address1";
             this.Address1.ReadOnly = true;
-            this.Address1.Width = 96;
+            this.Address1.Width = 89;
             // 
             // Address2
             // 
@@ -162,7 +182,7 @@
             this.Address2.HeaderText = "Address 2";
             this.Address2.Name = "Address2";
             this.Address2.ReadOnly = true;
-            this.Address2.Width = 110;
+            this.Address2.Width = 102;
             // 
             // ZipPostalCode
             // 
@@ -170,6 +190,7 @@
             this.ZipPostalCode.HeaderText = "Zip Code";
             this.ZipPostalCode.Name = "ZipPostalCode";
             this.ZipPostalCode.ReadOnly = true;
+            this.ZipPostalCode.Width = 93;
             // 
             // City
             // 
@@ -177,7 +198,7 @@
             this.City.HeaderText = "City";
             this.City.Name = "City";
             this.City.ReadOnly = true;
-            this.City.Width = 63;
+            this.City.Width = 59;
             // 
             // Country
             // 
@@ -185,7 +206,7 @@
             this.Country.HeaderText = "Country";
             this.Country.Name = "Country";
             this.Country.ReadOnly = true;
-            this.Country.Width = 92;
+            this.Country.Width = 89;
             // 
             // StateProvinceId
             // 
@@ -193,7 +214,7 @@
             this.StateProvinceId.HeaderText = "State";
             this.StateProvinceId.Name = "StateProvinceId";
             this.StateProvinceId.ReadOnly = true;
-            this.StateProvinceId.Width = 73;
+            this.StateProvinceId.Width = 68;
             // 
             // PhoneNumber
             // 
@@ -201,7 +222,7 @@
             this.PhoneNumber.HeaderText = "Phone";
             this.PhoneNumber.Name = "PhoneNumber";
             this.PhoneNumber.ReadOnly = true;
-            this.PhoneNumber.Width = 81;
+            this.PhoneNumber.Width = 76;
             // 
             // CreateDate
             // 
@@ -209,7 +230,7 @@
             this.CreateDate.HeaderText = "Create Date";
             this.CreateDate.Name = "CreateDate";
             this.CreateDate.ReadOnly = true;
-            this.CreateDate.Width = 125;
+            this.CreateDate.Width = 114;
             // 
             // ModifyDate
             // 
@@ -217,7 +238,7 @@
             this.ModifyDate.HeaderText = "Modify Date";
             this.ModifyDate.Name = "ModifyDate";
             this.ModifyDate.ReadOnly = true;
-            this.ModifyDate.Width = 124;
+            this.ModifyDate.Width = 119;
             // 
             // ModifiedBy
             // 
@@ -225,7 +246,7 @@
             this.ModifiedBy.HeaderText = "Modified by";
             this.ModifiedBy.Name = "ModifiedBy";
             this.ModifiedBy.ReadOnly = true;
-            this.ModifiedBy.Width = 119;
+            this.ModifiedBy.Width = 116;
             // 
             // uid
             // 
@@ -234,7 +255,7 @@
             this.uid.Name = "uid";
             this.uid.ReadOnly = true;
             this.uid.Visible = false;
-            this.uid.Width = 56;
+            this.uid.Width = 58;
             // 
             // panel1
             // 
@@ -256,7 +277,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(887, 76);
+            this.panel1.Size = new System.Drawing.Size(830, 76);
             this.panel1.TabIndex = 2;
             // 
             // refreshBtn
@@ -424,7 +445,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(887, 532);
+            this.ClientSize = new System.Drawing.Size(830, 532);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.panel1);
             this.Name = "UserList";

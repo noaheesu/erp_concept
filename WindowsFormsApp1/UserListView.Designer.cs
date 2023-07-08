@@ -1,6 +1,6 @@
 ﻿namespace WindowsFormsApp1
 {
-    partial class UserListView
+    partial class userListView
     {
         /// <summary>
         /// Required designer variable.
@@ -261,6 +261,7 @@
             // 
             // listView1
             // 
+            this.listView1.BackColor = System.Drawing.SystemColors.Control;
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.Email,
             this.FirstName,
@@ -281,6 +282,8 @@
             this.ModifiedBy,
             this.UID});
             this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listView1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listView1.ForeColor = System.Drawing.SystemColors.WindowText;
             this.listView1.FullRowSelect = true;
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(0, 0);
@@ -373,7 +376,7 @@
             this.UID.Text = "UID";
             this.UID.Width = 0;
             // 
-            // UserListView
+            // userListView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -381,7 +384,7 @@
             this.ClientSize = new System.Drawing.Size(816, 513);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.Name = "UserListView";
+            this.Name = "userListView";
             this.Text = "UserListView";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

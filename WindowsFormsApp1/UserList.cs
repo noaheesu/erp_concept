@@ -49,16 +49,10 @@ namespace WindowsFormsApp1
         #region Private Method
         private void UserData()
         {
-            library.LoadData(dataGridView1);
-           // dt = library.LoadData(dataGridView1);
-            //dv = dt.DefaultView;
+            dt = library.LoadUserData(dataGridView1);    
 
-            dataGridView1.EnableHeadersVisualStyles = false;
-            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(109, 122, 224);
-            dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.Black;
-            dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font(dataGridView1.Font, FontStyle.Bold);
-            dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font(dataGridView1.ColumnHeadersDefaultCellStyle.Font.FontFamily, 12);
-            dataGridView1.RowHeadersDefaultCellStyle.Font = new Font(dataGridView1.RowHeadersDefaultCellStyle.Font.FontFamily, 10);
+            //For RowFilter Name Search
+            dv = dt.DefaultView;
         }
 
         private void EditUserInfoByGrid()
@@ -107,29 +101,29 @@ namespace WindowsFormsApp1
         private void EditUserInfoByStruct()
         {
             DataGridViewRow currentRow = dataGridView1.CurrentRow;
-            UserInfo UserInfo = new UserInfo();
+            UserInfo userInfo = new UserInfo();
 
-            UserInfo.Email = GetCellValue(currentRow, 0);
-            UserInfo.FirstName = GetCellValue(currentRow, 1);
-            UserInfo.LastName = GetCellValue(currentRow, 2);
-            UserInfo.Company = GetCellValue(currentRow, 3);
-            UserInfo.Address = GetCellValue(currentRow, 4);
-            UserInfo.Address2 = GetCellValue(currentRow, 5);
-            UserInfo.Zip = GetCellValue(currentRow, 6);
-            UserInfo.City = GetCellValue(currentRow, 7);
-            UserInfo.Country = GetCellValue(currentRow, 8);
-            UserInfo.State = GetCellValue(currentRow, 9);
-            UserInfo.Phone = GetCellValue(currentRow, 10);
-            UserInfo.Fax = GetCellValue(currentRow, 11);
-            UserInfo.Description = GetCellValue(currentRow, 12);
-            UserInfo.CreateBy = GetCellValue(currentRow, 14);
-            UserInfo.ModifyDate = string.IsNullOrEmpty(GetCellValue(currentRow, 15)) ? "Default Value" : Convert.ToDateTime(GetCellValue(currentRow, 15)).ToString("MM/dd/yyyy HH:mm:ss");
-            UserInfo.ModifiedBy = GetCellValue(currentRow, 16);
-            UserInfo.txtUID = currentRow.Cells[17].Value?.ToString();
+            userInfo.Email = GetCellValue(currentRow, 0);
+            userInfo.FirstName = GetCellValue(currentRow, 1);
+            userInfo.LastName = GetCellValue(currentRow, 2);
+            userInfo.Company = GetCellValue(currentRow, 3);
+            userInfo.Address = GetCellValue(currentRow, 4);
+            userInfo.Address2 = GetCellValue(currentRow, 5);
+            userInfo.Zip = GetCellValue(currentRow, 6);
+            userInfo.City = GetCellValue(currentRow, 7);
+            userInfo.Country = GetCellValue(currentRow, 8);
+            userInfo.State = GetCellValue(currentRow, 9);
+            userInfo.Phone = GetCellValue(currentRow, 10);
+            userInfo.Fax = GetCellValue(currentRow, 11);
+            userInfo.Description = GetCellValue(currentRow, 12);
+            userInfo.CreateBy = GetCellValue(currentRow, 14);
+            userInfo.ModifyDate = string.IsNullOrEmpty(GetCellValue(currentRow, 15)) ? "Default Value" : Convert.ToDateTime(GetCellValue(currentRow, 15)).ToString("MM/dd/yyyy HH:mm:ss");
+            userInfo.ModifiedBy = GetCellValue(currentRow, 16);
+            userInfo.txtUID = currentRow.Cells[17].Value?.ToString();
 
-            UserInfo.displayBox = currentRow.Cells[1].Value?.ToString();
+            userInfo.displayBox = currentRow.Cells[1].Value?.ToString();
 
-            UserUpdate userUpdate = new UserUpdate(UserInfo);
+            UserUpdate userUpdate = new UserUpdate(userInfo);
 
             userUpdate.ShowDialog();
             RefreshUserData();
