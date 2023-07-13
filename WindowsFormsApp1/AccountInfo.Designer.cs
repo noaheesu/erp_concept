@@ -61,7 +61,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(681, 579);
+            this.panel2.Size = new System.Drawing.Size(636, 579);
             this.panel2.TabIndex = 5;
             // 
             // panel1
@@ -71,7 +71,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(681, 68);
+            this.panel1.Size = new System.Drawing.Size(636, 68);
             this.panel1.TabIndex = 27;
             // 
             // label1
@@ -103,7 +103,7 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(681, 579);
+            this.panel3.Size = new System.Drawing.Size(636, 579);
             this.panel3.TabIndex = 26;
             // 
             // phoneNumber
@@ -158,17 +158,18 @@
             this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel4.Location = new System.Drawing.Point(0, 511);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(681, 68);
+            this.panel4.Size = new System.Drawing.Size(636, 68);
             this.panel4.TabIndex = 12;
             // 
             // changeProfile
             // 
+            this.changeProfile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.changeProfile.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
             this.changeProfile.Cursor = System.Windows.Forms.Cursors.Hand;
             this.changeProfile.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.changeProfile.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.changeProfile.ForeColor = System.Drawing.Color.White;
-            this.changeProfile.Location = new System.Drawing.Point(554, 16);
+            this.changeProfile.Location = new System.Drawing.Point(509, 16);
             this.changeProfile.Name = "changeProfile";
             this.changeProfile.Size = new System.Drawing.Size(92, 39);
             this.changeProfile.TabIndex = 25;
@@ -260,7 +261,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(681, 579);
+            this.ClientSize = new System.Drawing.Size(636, 579);
             this.Controls.Add(this.panel2);
             this.Name = "AccountInfo";
             this.Text = "Account";

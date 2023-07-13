@@ -360,7 +360,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(851, 431);
+            this.tabPage2.Size = new System.Drawing.Size(715, 431);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Address";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -498,13 +498,14 @@
             this.displayBox.BackColor = System.Drawing.Color.Gainsboro;
             this.displayBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.displayBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.displayBox.Location = new System.Drawing.Point(234, 20);
+            this.displayBox.Location = new System.Drawing.Point(234, 26);
             this.displayBox.Name = "displayBox";
             this.displayBox.Size = new System.Drawing.Size(234, 31);
             this.displayBox.TabIndex = 5;
             // 
             // deleteBtn
             // 
+            this.deleteBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.deleteBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(75)))), ((int)(((byte)(57)))));
             this.deleteBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.deleteBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -519,6 +520,7 @@
             // 
             // saveBtn
             // 
+            this.saveBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.saveBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(115)))), ((int)(((byte)(183)))));
             this.saveBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.saveBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -535,7 +537,7 @@
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(17, 20);
+            this.label13.Location = new System.Drawing.Point(17, 26);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(223, 31);
             this.label13.TabIndex = 2;
@@ -543,6 +545,7 @@
             // 
             // createNewUserBtn
             // 
+            this.createNewUserBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.createNewUserBtn.BackColor = System.Drawing.Color.Chocolate;
             this.createNewUserBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.createNewUserBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));

@@ -344,6 +344,47 @@ namespace WindowsFormsApp1
         //    }
         //}
 
+        public DataTable LoadInvoiceData(DataGridView grid)
+        {
+            string connectionString = GetConnectionString();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                SqlDataAdapter sqlDa = new SqlDataAdapter(
+                    "SELECT " +
+                    "UserID, " +
+                    "InvoiceNumber, " +
+                    "ContactName, " +
+                    "ServiceList, " +
+                    "TotalAmount, " +
+                    "PaymentStatus, " +
+                    "PaymentDate, " +
+                    "PaymentMethod, " +
+                    "BillingAddress, " +
+                    "BillingAddress2, " +
+                    "ZipPostalCode, " +
+                    "City, " +
+                    "Country, " +
+                    "StateProvinceId, " +
+                    "PhoneNumber,  " +
+                    "Note, " +
+                    "InvoiceDate, " +
+                    "DueDate, " +
+                    "CreateDate, " +
+                    "ModifyDate, " +
+                    "ModifiedBy, " +
+                    "ID " +
+                    "FROM Invoice", connection);
+                DataTable dt = new DataTable();
+                sqlDa.Fill(dt);
+                grid.Columns["ModifyDate"].DefaultCellStyle.Format = "MM/dd/yyyy";
+                grid.DataSource = dt;
+
+                return dt;
+            }
+        }
+
         public void CountryList(ComboBox country)
         {
             List<string> countries = new List<string>()
@@ -480,6 +521,17 @@ namespace WindowsFormsApp1
             return checkEmail;
         }
 
+        public int CheckExistInvoice(SqlCommand sqlCommand, string invoice)
+        {
+            sqlCommand.Parameters.Clear();
+
+            sqlCommand.CommandText = "SELECT COUNT(*) FROM Invoice WHERE InvoiceNumber = @Invoice";
+            sqlCommand.Parameters.AddWithValue("@Invoice", invoice);
+
+            int checkInvoice = (int)sqlCommand.ExecuteScalar();
+            return checkInvoice;
+        }
+
         //public void OpenAccountInfo(Form form, string loginId)
         //{
         //    string connectionString = GetConnectionString();
@@ -519,6 +571,7 @@ namespace WindowsFormsApp1
         //    accountInfo.Show();
         //    accountInfo.MdiParent = form;
         //}
+
         private AccountInfo accountInfo = null;
 
         public void OpenAccountInfo(Form form, string loginId)
@@ -559,12 +612,17 @@ namespace WindowsFormsApp1
 
                     reader.Close();
                 }
-
+                accountInfo.FormClosed += AccountInfo_FormClosed;
                 accountInfo.MdiParent = form;
             }
 
             accountInfo.Show();
             accountInfo.Focus();
+        }
+
+        private void AccountInfo_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            accountInfo = null;
         }
 
         public void UserInfoUpdate(string email, TextBox fName, TextBox lName, TextBox companyName, TextBox phoneNumber)

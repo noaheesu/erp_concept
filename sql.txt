@@ -96,3 +96,71 @@ CREATE TABLE Products(
 
 
 SELECT * FROM Products
+
+
+
+
+
+
+
+
+
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+CREATE TABLE Invoice (
+    ID               INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
+    UserID           INT REFERENCES User_Information(Uid),
+    InvoiceNumber    NVARCHAR(50),
+    [ContactName]    NVARCHAR(50),
+    [ServiceList]    NVARCHAR(50),
+    TotalAmount      DECIMAL(18,2) NULL,
+    PaymentStatus    NVARCHAR(MAX) NULL,
+    PaymentDate      DATETIME NULL,
+    PaymentMethod    NVARCHAR(MAX) NULL,
+    BillingAddress   NVARCHAR(MAX) NULL,
+    BillingAddress2  NVARCHAR(MAX) NULL,
+    ZipPostalCode    NVARCHAR(MAX) NOT NULL,
+    City	     NVARCHAR(MAX) NOT NULL,
+    Country          NVARCHAR(MAX) NOT NULL,
+    StateProvinceId  NVARCHAR(MAX) NOT NULL,
+    PhoneNumber      NVARCHAR(MAX) NULL,   
+    [Note]           NVARCHAR(MAX) NULL,
+    InvoiceDate      DATETIME NULL,
+    DueDate          DATETIME NULL,
+    CreateDate       DATETIME DEFAULT GETDATE() NOT NULL,
+    CreatedBy        NVARCHAR(50) NULL,
+    ModifyDate       DATETIME NULL,
+    ModifiedBy       NVARCHAR(50) NULL,
+    RowStamp         TIMESTAMP NULL
+);
+
+
+INSERT INTO Invoice (UserID, InvoiceNumber, [ContactName], [ServiceList], TotalAmount, PaymentStatus, PaymentDate, PaymentMethod, BillingAddress, BillingAddress2, ZipPostalCode, City, Country, StateProvinceId, PhoneNumber, [Note], InvoiceDate, DueDate, CreatedBy)
+VALUES (9, 'INV-001', 'David', 'Merchant', 100.00, 'Pending', NULL, 'Visa', '123 Main St', 'Apt 2B', '12345', 'New York', 'United States', 'NY', '1234567890','Sample invoice', '2023-07-11', '2023-12-21', 'John Doe')
+
+INSERT INTO Invoice (UserID, InvoiceNumber, [ContactName], [ServiceList], TotalAmount, PaymentStatus, PaymentDate, PaymentMethod, BillingAddress, BillingAddress2, ZipPostalCode, City, Country, StateProvinceId, PhoneNumber, [Note], InvoiceDate, DueDate, CreatedBy)
+VALUES (10, 'INV-002', 'Sarah', 'Consulting', 250.00, 'Paid', '2023-07-10', 'Mastercard', '456 Oak St', '', '54321', 'Los Angeles', 'United States', 'California', '9876543210', 'Sample invoice 2', '2023-07-12', '2023-12-31', 'Jane Smith');
+
+INSERT INTO Invoice (UserID, InvoiceNumber, [ContactName], [ServiceList], TotalAmount, PaymentStatus, PaymentDate, PaymentMethod, BillingAddress, BillingAddress2, ZipPostalCode, City, Country, StateProvinceId, PhoneNumber, [Note], InvoiceDate, DueDate, CreatedBy)
+VALUES (11, 'INV-003', 'Michael', 'Product', 75.00, 'Pending', NULL, 'Visa', '789 Elm St', '', '67890', 'Chicago', 'United States', 'Illinois', '2345678901', 'Sample invoice 3', '2023-07-13', '2023-12-15', 'Mark Johnson');
+
+INSERT INTO Invoice (UserID, InvoiceNumber, [ContactName], [ServiceList], TotalAmount, PaymentStatus, PaymentDate, PaymentMethod, BillingAddress, BillingAddress2, ZipPostalCode, City, Country, StateProvinceId, PhoneNumber, [Note], InvoiceDate, DueDate, CreatedBy)
+VALUES (12, 'INV-004', 'Emily', 'Subscription', 50.00, 'Paid', '2023-07-09', 'PayPal', '321 Maple Ave', 'Suite 5', '98765', 'San Francisco', 'United States', 'California', '3456789012', 'Sample invoice 4', '2023-07-14', '2023-12-28', 'Anna Lee');
+
+INSERT INTO Invoice (UserID, InvoiceNumber, [ContactName], [ServiceList], TotalAmount, PaymentStatus, PaymentDate, PaymentMethod, BillingAddress, BillingAddress2, ZipPostalCode, City, Country, StateProvinceId, PhoneNumber, [Note], InvoiceDate, DueDate, CreatedBy)
+VALUES (16, 'INV-005', 'Daniel', 'Repair', 150.00, 'Pending', NULL, 'Credit Card', '555 Pine St', '', '54321', 'Seattle', 'United States', 'Washington', '7890123456', 'Sample invoice 5', '2023-07-16', '2023-12-10', 'Jessica Brown');
+
+INSERT INTO Invoice (UserID, InvoiceNumber, [ContactName], [ServiceList], TotalAmount, PaymentStatus, PaymentDate, PaymentMethod, BillingAddress, BillingAddress2, ZipPostalCode, City, Country, StateProvinceId, PhoneNumber, [Note], InvoiceDate, DueDate, CreatedBy)
+VALUES (17, 'INV-006', 'Sophia', 'Training', 200.00, 'Paid', '2023-07-15', 'Bank Transfer', '777 Oak St', 'Apt 10C', '12345', 'New York', 'United States', 'New York', '8901234567', 'Sample invoice 6', '2023-07-18', '2023-12-05', 'Robert Davis');
+
+INSERT INTO Invoice (UserID, InvoiceNumber, [ContactName], [ServiceList], TotalAmount, PaymentStatus, PaymentDate, PaymentMethod, BillingAddress, BillingAddress2, ZipPostalCode, City, Country, StateProvinceId, PhoneNumber, [Note], InvoiceDate, DueDate, CreatedBy)
+VALUES (18, 'INV-007', 'Olivia', 'Development', 300.00, 'Pending', NULL, 'Visa', '999 Elm St', '', '67890', 'Chicago', 'United States', 'Illinois', '9012345678', 'Sample invoice 7', '2023-07-19', '2023-12-01', 'William Johnson');
+
+INSERT INTO Invoice (UserID, InvoiceNumber, [ContactName], [ServiceList], TotalAmount, PaymentStatus, PaymentDate, PaymentMethod, BillingAddress, BillingAddress2, ZipPostalCode, City, Country, StateProvinceId, PhoneNumber, [Note], InvoiceDate, DueDate, CreatedBy)
+VALUES (19, 'INV-008', 'Liam', 'Consulting', 250.00, 'Paid', '2023-07-17', 'Mastercard', '111 Pine Ave', 'Suite 3', '56789', 'Los Angeles', 'United States', 'California', '3456789012', 'Sample invoice 8', '2023-07-22', '2023-11-27', 'Elizabeth Miller');
+
+
+SELECT * FROM Invoice

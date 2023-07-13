@@ -117,7 +117,7 @@ namespace WindowsFormsApp1
             userInfo.Fax = GetCellValue(currentRow, 11);
             userInfo.Description = GetCellValue(currentRow, 12);
             userInfo.CreateBy = GetCellValue(currentRow, 14);
-            userInfo.ModifyDate = string.IsNullOrEmpty(GetCellValue(currentRow, 15)) ? "Default Value" : Convert.ToDateTime(GetCellValue(currentRow, 15)).ToString("MM/dd/yyyy HH:mm:ss");
+            userInfo.ModifyDate = string.IsNullOrEmpty(GetCellValue(currentRow, 15)) ? "" : Convert.ToDateTime(GetCellValue(currentRow, 15)).ToString("MM/dd/yyyy HH:mm:ss");
             userInfo.ModifiedBy = GetCellValue(currentRow, 16);
             userInfo.txtUID = currentRow.Cells[17].Value?.ToString();
 
@@ -221,5 +221,10 @@ namespace WindowsFormsApp1
         }
 
         #endregion Event Handlers
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

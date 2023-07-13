@@ -65,7 +65,7 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(681, 540);
+            this.panel3.Size = new System.Drawing.Size(599, 540);
             this.panel3.TabIndex = 2;
             // 
             // email
@@ -95,17 +95,18 @@
             this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel4.Location = new System.Drawing.Point(0, 472);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(681, 68);
+            this.panel4.Size = new System.Drawing.Size(599, 68);
             this.panel4.TabIndex = 12;
             // 
             // changePwBtn
             // 
+            this.changePwBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.changePwBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
             this.changePwBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.changePwBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.changePwBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.changePwBtn.ForeColor = System.Drawing.Color.White;
-            this.changePwBtn.Location = new System.Drawing.Point(495, 15);
+            this.changePwBtn.Location = new System.Drawing.Point(413, 15);
             this.changePwBtn.Name = "changePwBtn";
             this.changePwBtn.Size = new System.Drawing.Size(156, 39);
             this.changePwBtn.TabIndex = 5;
@@ -203,7 +204,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(681, 540);
+            this.panel2.Size = new System.Drawing.Size(599, 540);
             this.panel2.TabIndex = 2;
             // 
             // panel1
@@ -213,7 +214,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(681, 68);
+            this.panel1.Size = new System.Drawing.Size(599, 68);
             this.panel1.TabIndex = 3;
             // 
             // UpdatePw
@@ -221,7 +222,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(681, 540);
+            this.ClientSize = new System.Drawing.Size(599, 540);
             this.Controls.Add(this.panel2);
             this.Name = "UpdatePw";
             this.Text = " Update password";

@@ -54,6 +54,8 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.pictureBox10 = new System.Windows.Forms.PictureBox();
+            this.invoiceBtn = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -67,11 +69,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(45)))), ((int)(((byte)(50)))));
+            this.panel1.Controls.Add(this.pictureBox10);
+            this.panel1.Controls.Add(this.invoiceBtn);
             this.panel1.Controls.Add(this.pictureBox8);
             this.panel1.Controls.Add(this.productBtn);
             this.panel1.Controls.Add(this.pictureBox1);
@@ -92,7 +97,7 @@
             // pictureBox8
             // 
             this.pictureBox8.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox8.Image")));
-            this.pictureBox8.Location = new System.Drawing.Point(17, 395);
+            this.pictureBox8.Location = new System.Drawing.Point(17, 246);
             this.pictureBox8.Name = "pictureBox8";
             this.pictureBox8.Size = new System.Drawing.Size(31, 31);
             this.pictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -107,7 +112,7 @@
             this.productBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.productBtn.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.productBtn.ForeColor = System.Drawing.Color.White;
-            this.productBtn.Location = new System.Drawing.Point(0, 382);
+            this.productBtn.Location = new System.Drawing.Point(0, 233);
             this.productBtn.Name = "productBtn";
             this.productBtn.Size = new System.Drawing.Size(270, 57);
             this.productBtn.TabIndex = 59;
@@ -118,7 +123,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(17, 206);
+            this.pictureBox1.Location = new System.Drawing.Point(17, 75);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(31, 31);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -156,7 +161,7 @@
             this.panel4.Controls.Add(this.userBtn);
             this.panel4.Controls.Add(this.userListGridButton);
             this.panel4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.panel4.Location = new System.Drawing.Point(1, 446);
+            this.panel4.Location = new System.Drawing.Point(1, 347);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(270, 57);
             this.panel4.TabIndex = 3;
@@ -184,7 +189,7 @@
             // pictureBox6
             // 
             this.pictureBox6.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox6.Image")));
-            this.pictureBox6.Location = new System.Drawing.Point(11, 12);
+            this.pictureBox6.Location = new System.Drawing.Point(15, 12);
             this.pictureBox6.Name = "pictureBox6";
             this.pictureBox6.Size = new System.Drawing.Size(31, 31);
             this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -245,7 +250,7 @@
             this.homeBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.homeBtn.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.homeBtn.ForeColor = System.Drawing.Color.White;
-            this.homeBtn.Location = new System.Drawing.Point(0, 193);
+            this.homeBtn.Location = new System.Drawing.Point(0, 62);
             this.homeBtn.Name = "homeBtn";
             this.homeBtn.Size = new System.Drawing.Size(270, 57);
             this.homeBtn.TabIndex = 5;
@@ -255,7 +260,7 @@
             // pictureBox3
             // 
             this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-            this.pictureBox3.Location = new System.Drawing.Point(17, 331);
+            this.pictureBox3.Location = new System.Drawing.Point(17, 188);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(31, 31);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -265,7 +270,7 @@
             // pictureBox2
             // 
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(17, 269);
+            this.pictureBox2.Location = new System.Drawing.Point(17, 132);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(31, 31);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -280,7 +285,7 @@
             this.accountInfoBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.accountInfoBtn.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.accountInfoBtn.ForeColor = System.Drawing.Color.White;
-            this.accountInfoBtn.Location = new System.Drawing.Point(0, 319);
+            this.accountInfoBtn.Location = new System.Drawing.Point(0, 176);
             this.accountInfoBtn.Name = "accountInfoBtn";
             this.accountInfoBtn.Size = new System.Drawing.Size(270, 57);
             this.accountInfoBtn.TabIndex = 7;
@@ -296,7 +301,7 @@
             this.passwordBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.passwordBtn.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.passwordBtn.ForeColor = System.Drawing.Color.White;
-            this.passwordBtn.Location = new System.Drawing.Point(0, 256);
+            this.passwordBtn.Location = new System.Drawing.Point(0, 119);
             this.passwordBtn.Name = "passwordBtn";
             this.passwordBtn.Size = new System.Drawing.Size(270, 57);
             this.passwordBtn.TabIndex = 6;
@@ -306,6 +311,7 @@
             // 
             // logOut
             // 
+            this.logOut.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.logOut.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
             this.logOut.Cursor = System.Windows.Forms.Cursors.Hand;
             this.logOut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -370,6 +376,32 @@
             this.pictureBox4.TabIndex = 0;
             this.pictureBox4.TabStop = false;
             // 
+            // pictureBox10
+            // 
+            this.pictureBox10.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox10.Image")));
+            this.pictureBox10.Location = new System.Drawing.Point(17, 303);
+            this.pictureBox10.Name = "pictureBox10";
+            this.pictureBox10.Size = new System.Drawing.Size(31, 31);
+            this.pictureBox10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox10.TabIndex = 62;
+            this.pictureBox10.TabStop = false;
+            // 
+            // invoiceBtn
+            // 
+            this.invoiceBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(45)))), ((int)(((byte)(50)))));
+            this.invoiceBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.invoiceBtn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
+            this.invoiceBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.invoiceBtn.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.invoiceBtn.ForeColor = System.Drawing.Color.White;
+            this.invoiceBtn.Location = new System.Drawing.Point(0, 290);
+            this.invoiceBtn.Name = "invoiceBtn";
+            this.invoiceBtn.Size = new System.Drawing.Size(270, 57);
+            this.invoiceBtn.TabIndex = 61;
+            this.invoiceBtn.Text = "Invoice";
+            this.invoiceBtn.UseVisualStyleBackColor = false;
+            this.invoiceBtn.Click += new System.EventHandler(this.invoiceBtn_Click);
+            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -397,6 +429,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -427,5 +460,7 @@
         private System.Windows.Forms.PictureBox pictureBox9;
         private System.Windows.Forms.Button userListViewButton;
         private System.Windows.Forms.PictureBox pictureBox8;
+        private System.Windows.Forms.PictureBox pictureBox10;
+        private System.Windows.Forms.Button invoiceBtn;
     }
 }

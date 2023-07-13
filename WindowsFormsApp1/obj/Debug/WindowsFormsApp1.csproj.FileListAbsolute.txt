@@ -39,3 +39,5 @@ C:\temp\erp\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.GenerateResource.
 C:\temp\erp\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.CoreCompileInputs.cache
 C:\temp\erp\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.exe
 C:\temp\erp\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.pdb
+C:\temp\erp\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Invoice.resources
+C:\temp\erp\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.InvoiceUpdate.resources

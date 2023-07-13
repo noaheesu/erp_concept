@@ -41,12 +41,19 @@ namespace WindowsFormsApp1
                 updatePw = new UpdatePw();
                 updatePw.MdiParent = this;
 
-                string Email = Login.username;
-                updatePw.Email = Email;
+                string email = Login.username;
+                updatePw.Email = email;
+
+                updatePw.FormClosed += UpdatePw_FormClosed;
             }
 
             updatePw.Show();
             updatePw.Focus();
+        }
+        private void UpdatePw_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            // Set the updatePw variable to null when the form is closed
+            updatePw = null;
         }
 
         private void accountInfo_Click(object sender, EventArgs e)
@@ -106,5 +113,10 @@ namespace WindowsFormsApp1
             library.OpenForm<userListView>(this);
         }
         #endregion Event Handlers
+
+        private void invoiceBtn_Click(object sender, EventArgs e)
+        {
+            library.OpenForm<Invoice>(this);
+        }
     }
 }
